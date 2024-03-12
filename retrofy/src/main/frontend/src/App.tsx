@@ -1,7 +1,7 @@
-import GameList from "pages/game";
+import GameList from "pages/game"
 
 function App() {
-    return <GameList system={"gb"}/>;
+    return <GameList system={"gb"} />
 }
 
-export default App;
+export default App

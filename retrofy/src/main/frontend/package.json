@@ -2,6 +2,13 @@
   "name": "retrofy-frontend",
   "version": "0.1.0",
   "proxy": "http://localhost:8080",
+  "prettier":{
+    "trailingComma": "es5",
+    "tabWidth": 4,
+    "semi": false,
+    "singleQuote": false,
+    "printWidth": 150
+  },
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.11.4",
