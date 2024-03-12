@@ -73,8 +73,6 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-jooq:3.2.3")
     implementation("org.jooq:jooq-codegen:3.18.11")
     implementation("org.jooq:jooq-meta:3.18.11")
-
-
 }
 
 dependencies {
@@ -90,16 +88,18 @@ tasks.withType<KotlinCompile> {
 }
 
 jooq {
+
     version.set("3.18.11")
     edition.set(JooqEdition.OSS)
     configurations {
         create("main") {
             jooqConfiguration.apply {
+                generateSchemaSourceOnCompilation = false
                 logging = org.jooq.meta.jaxb.Logging.INFO
                 jdbc.apply {
                     driver = "com.mysql.cj.jdbc.Driver"
-                    url =
-                        "jdbc:mysql://localhost:3306/retrofy?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8"
+                    url = "jdbc:mysql://localhost:3306/retrofy?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8" // # For develop
+//                    url = "jdbc:mysql://retrofy-mysql:3306/retrofy?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8" // # For Docker
                     user = "root"
                     password = System.getenv("MYSQL_PASSWORD")
                 }

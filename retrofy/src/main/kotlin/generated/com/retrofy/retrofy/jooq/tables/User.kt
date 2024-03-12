@@ -70,7 +70,7 @@ open class User(
     /**
      * The column <code>retrofy.user.password</code>.
      */
-    val PASSWORD: TableField<UserRecord, String?> = createField(DSL.name("password"), SQLDataType.VARCHAR(50).nullable(false), this, "")
+    val PASSWORD: TableField<UserRecord, String?> = createField(DSL.name("password"), SQLDataType.VARCHAR(150).nullable(false), this, "")
 
     /**
      * The column <code>retrofy.user.role</code>.
