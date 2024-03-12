@@ -4,11 +4,7 @@ name: retrofy
 services:
   app:
     container_name: retrofy-server
-    build: 
-      context: server
-      dockerfile: Dockerfile
-    volumes:
-      - /retrofy/roms:/retrofy/roms
+    image: 0xcd0/retrofy
     ports:
       - 8080:8080
     restart: always
@@ -19,11 +15,11 @@ services:
       db:
         condition: service_started
     networks:
-      - retrofy
+      - retrofy-net
 
   db:
     container_name: retrofy-mysql
-    image: mysql:8.0
+    image: mysql:8.1
     volumes:
       - /retrofy/dbdata:/var/lib/mysql
     ports:
@@ -33,7 +29,7 @@ services:
       - MYSQL_DATABASE=retrofy
       - MYSQL_ROOT_PASSWORD=password
     networks:
-      - retrofy
+      - retrofy-net
 
 networks:
   retrofy-net:

@@ -24,8 +24,8 @@ spring:
       mode: always
 
   flyway:
-#    url: jdbc:mysql://retrofy-mysql:3306/retrofy # For development
-    url: jdbc:mysql://localhost:3306/retrofy # For docker
+#    url: jdbc:mysql://localhost:3306/retrofy # For development
+    url: jdbc:mysql://retrofy-mysql:3306/retrofy # For docker
     baseline-on-migrate: true
     user: root
     password: ${MYSQL_PASSWORD}

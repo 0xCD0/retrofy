@@ -16,3 +16,7 @@ COPY ROOT.jar .
 ENTRYPOINT ["java", "-jar", "/retrofy/bin/ROOT.jar"]
 
 EXPOSE 8080
+
+# docker build --tag retrofy .
+# docker tag retrofy 0xcd0/retrofy
+# docker push 0xcd0/retrofy

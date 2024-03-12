@@ -99,7 +99,6 @@ jooq {
                 jdbc.apply {
                     driver = "com.mysql.cj.jdbc.Driver"
                     url = "jdbc:mysql://localhost:3306/retrofy?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8" // # For develop
-//                    url = "jdbc:mysql://retrofy-mysql:3306/retrofy?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8" // # For Docker
                     user = "root"
                     password = System.getenv("MYSQL_PASSWORD")
                 }
