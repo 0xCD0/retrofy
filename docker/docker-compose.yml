@@ -6,7 +6,7 @@ services:
     container_name: retrofy-server
     image: 0xcd0/retrofy
     volumes:
-      - /retrofy/roms:/var/roms/
+      - /retrofy/roms:/retrofy/roms/
     ports:
       - 8080:8080
     restart: always
