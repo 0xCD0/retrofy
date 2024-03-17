@@ -47,7 +47,7 @@ jobs:
         run: mv retrofy/build/libs/ROOT.jar docker/server
 
       - name: ls
-        working-directory: ./retrofy/docker/server
+        working-directory: docker/server
         run: ls -al
         
 
