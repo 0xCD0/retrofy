@@ -32,6 +32,10 @@ jobs:
 
       - name: ls bootjar
         working-directory: ./retrofy/build/libs
+        run: ls -al && pwd
+
+      - name: ls server
+        working-directory: ./retrofy/docker/server
         run: ls -al && pwd    
 
       - name: copy ROOT.jar
