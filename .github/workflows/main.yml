@@ -43,8 +43,7 @@ jobs:
         run: ls -al && pwd    
 
       - name: copy ROOT.jar
-        working-directory: retrofy
-        run: mv retrofy/build/libs/ROOT.jar docker/server
+        run: pwd && mv retrofy/build/libs/ROOT.jar docker/server
 
       - name: ls
         working-directory: docker/server
