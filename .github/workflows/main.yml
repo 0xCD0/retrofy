@@ -24,7 +24,7 @@ jobs:
       #   run: chmod +x gradlew
 
       - name: touch
-        run: ls -al && pwd
+        run: ls -al && pwd && mkdir retrofy/build/ && mkdir retrofy/build/libs
         
       - name: touch
         working-directory: retrofy/build/libs/
