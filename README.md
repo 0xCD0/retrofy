@@ -6,6 +6,8 @@ Yes. I really wanted to have a simple, easy-to-use self-hosted retro emulator, a
 This project is powered by [emulatorJS](https://emulatorjs.org/) project. You can use all the same features you used in [emulatorJS](https://emulatorjs.org/).
 
 ## How to run
+You can use docker-compose to paste the yaml below, change the password for the database, and run it.
+
 ```yaml
 version: '3.8'
 
@@ -20,6 +22,8 @@ services:
     container_name: retrofy-server
     image: 0xcd0/retrofy
     volumes:
+        # set your local game folder on left side (Do not modify the Container Directory path)
+        # (Local Directory) : (Container Directory)
       - /retrofy/roms:/retrofy/roms/
     ports:
       - 8080:8080
@@ -53,6 +57,9 @@ networks:
   retrofy-net:
     driver: bridge
 ```
+## Structure of the Game Directory
+
+
 
 
 ## Support Systems
@@ -62,9 +69,10 @@ networks:
  - SNES
  - N64
  - PSX
- - SEGA 32x (Unstable)
- - SEGA CD
  - SEGA GG
  - SEGA MS
  - SEGA MD
- - SEGA SATURN
+
+## RoadMap
+The goal is to be able to run any system supported by Emulator JS.
+
