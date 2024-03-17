@@ -1,7 +1,5 @@
 name: Build retrofy image
 
-on: []
-
 jobs:
   build:
     runs-on: ubuntu-latest
