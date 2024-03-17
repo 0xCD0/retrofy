@@ -9,46 +9,49 @@ This project is powered by [emulatorJS](https://emulatorjs.org/) project. You ca
 ```yaml
 version: '3.8'
 
+x-env: &env
+  environment:
+  - MYSQL_DATABASE=retrofy
+  - MYSQL_ROOT_PASSWORD=password # Set user custom db password
+
 name: retrofy
 services:
   app:
     container_name: retrofy-server
-    # TBD
-    # build: 
-    #   context: server
-    #   dockerfile: Dockerfile
-    # volumes:
-    #   - /retrofy/roms:/retrofy/roms
+    image: 0xcd0/retrofy
+    volumes:
+      - /retrofy/roms:/retrofy/roms/
     ports:
       - 8080:8080
     restart: always
-    environment:
-      - MYSQL_PASSWORD=password
+    <<: *env
     tty: true
     depends_on:
       db:
-        condition: service_started
+        condition: service_healthy
     networks:
-      - retrofy
+      - retrofy-net
 
   db:
     container_name: retrofy-mysql
-    image: mysql:8.0
+    image: mysql:8.1
     volumes:
       - /retrofy/dbdata:/var/lib/mysql
     ports:
       - 3306:3306
     restart: always
-    environment:
-      - MYSQL_DATABASE=retrofy
-      - MYSQL_ROOT_PASSWORD=password
+    <<: *env
     networks:
-      - retrofy
+      - retrofy-net
+    healthcheck:
+      test: mysqladmin ping -h 127.0.0.1 -uroot -p$$MYSQL_ROOT_PASSWORD
+      interval: 30s
+      timeout: 1h
+      retries: 100
 
 networks:
   retrofy-net:
     driver: bridge
-
 ```
 
 
