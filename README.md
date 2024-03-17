@@ -23,8 +23,7 @@ services:
     image: 0xcd0/retrofy
     volumes:
         # set your local game directory on left side (Do not modify the Container Directory path)
-        # (Local Directory) : (Container Directory)
-      - /retrofy/roms:/retrofy/roms/
+      - {Set your game directory}:/retrofy/roms/
     ports:
       - 8080:8080
     restart: always
@@ -40,7 +39,8 @@ services:
     container_name: retrofy-mysql
     image: mysql:8.1
     volumes:
-      - /retrofy/dbdata:/var/lib/mysql
+      # Enter the path where the database will be stored
+      - {Set your database directory}:/var/lib/mysql
     ports:
       - 3306:3306
     restart: always
@@ -85,8 +85,6 @@ The following is just an example, all file extensions supported by EmulatorJS ar
     ├── game.sfc
     └── game.snes
 ```
-
-
 
 ## Support Systems
  - GB / GBC
