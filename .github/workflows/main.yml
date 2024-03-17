@@ -35,7 +35,8 @@ jobs:
         run: ls -al && pwd    
 
       - name: copy ROOT.jar
-        run: mv ${{ github.workspace }}/repo/retrofy/build/libs/ROOT.jar ${{ github.workspace }}/repo/retrofy/docker/server
+        working-directory: /home/runner/work/retrofy/retrofy
+        run: mv ./retrofy/build/libs/ROOT.jar ./retrofy/docker/server
 
       - name: ls
         working-directory: ./retrofy/docker/server
