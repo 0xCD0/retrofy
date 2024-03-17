@@ -1,10 +1,12 @@
 spring:
+  profiles:
+    active: local
+
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-#    url: jdbc:mysql://localhost:3306/retrofy?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8 # For development
-    url: jdbc:mysql://retrofy-mysql:3306/retrofy?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8 # For docker
+    url: jdbc:mysql://localhost:3306/retrofy?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8
     username: root
-    password: ${MYSQL_PASSWORD}
+    password: ${MYSQL_ROOT_PASSWORD}
 
   jpa:
     open-in-view: true
@@ -24,11 +26,10 @@ spring:
       mode: always
 
   flyway:
-#    url: jdbc:mysql://localhost:3306/retrofy # For development
-    url: jdbc:mysql://retrofy-mysql:3306/retrofy # For docker
+    url: jdbc:mysql://localhost:3306/retrofy
     baseline-on-migrate: true
     user: root
-    password: ${MYSQL_PASSWORD}
+    password: ${MYSQL_ROOT_PASSWORD}
     enabled: true
 
 logging:

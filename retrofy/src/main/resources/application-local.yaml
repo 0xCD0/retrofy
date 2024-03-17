@@ -1,0 +1,10 @@
+spring:
+  config:
+    activate:
+      on-profile: release
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/retrofy?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8
+
+  flyway:
+    url: jdbc:mysql://localhost:3306/retrofy

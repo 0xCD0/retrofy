@@ -7,13 +7,10 @@ RUN mkdir /retrofy
 RUN mkdir /retrofy/bin
 RUN mkdir /retrofy/roms
 
-WORKDIR /retrofy/roms
-RUN mkdir gb gba nes snes n64 psx sega32x segacd segagg segams segamd segasaturn
-
 WORKDIR /retrofy/bin
 COPY ROOT.jar .
 
-ENTRYPOINT ["java", "-jar", "/retrofy/bin/ROOT.jar"]
+ENTRYPOINT ["java", "-jar", "-Dspring.profiles.active=release", "/retrofy/bin/ROOT.jar"]
 
 EXPOSE 8080
 

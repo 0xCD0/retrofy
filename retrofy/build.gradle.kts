@@ -88,7 +88,6 @@ tasks.withType<KotlinCompile> {
 }
 
 jooq {
-
     version.set("3.18.11")
     edition.set(JooqEdition.OSS)
     configurations {
