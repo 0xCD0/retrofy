@@ -16,25 +16,18 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
 
-      # - name: Setup Gradle
-      #   uses: gradle/gradle-build-action@v3
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v3
 
-      # - name: Grant execute permission for gradlew
-      #   working-directory: ./retrofy
-      #   run: chmod +x gradlew
+      - name: Grant execute permission for gradlew
+        working-directory: ./retrofy
+        run: chmod +x gradlew
 
-      # - name: Build Gradle
-      #   working-directory: ./retrofy
-      #   run: ./gradlew bootJar
+      - name: Build Gradle
+        working-directory: ./retrofy
+        run: ./gradlew bootJar
       
-      - name: touch
-        run: ls -al && pwd && mkdir retrofy/build/ && mkdir retrofy/build/libs
-        
-      - name: touch
-        working-directory: retrofy/build/libs/
-        run: touch ROOT.jar
-
-      - name: copy ROOT.jar
+      - name: Copy ROOT.jar
         run: pwd && mv retrofy/build/libs/ROOT.jar docker/server && ls -al docker/server       
       
       - name: Log in to Docker Hub
