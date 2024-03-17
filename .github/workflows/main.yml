@@ -39,12 +39,12 @@ jobs:
         run: ls -al && pwd
 
       - name: ls server
-        working-directory: ./retrofy/docker/server
+        working-directory: retrofy/docker/server
         run: ls -al && pwd    
 
       - name: copy ROOT.jar
-        working-directory: /home/runner/work/retrofy/retrofy
-        run: mv ./retrofy/build/libs/ROOT.jar ./retrofy/docker/server
+        working-directory: retrofy
+        run: mv retrofy/build/libs/ROOT.jar retrofy/docker/server
 
       - name: ls
         working-directory: ./retrofy/docker/server
