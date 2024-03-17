@@ -35,8 +35,7 @@ jobs:
         run: ls -al
 
       - name: copy ROOT.jar
-        working-directory: ./retrofy/build/libs
-        run: mv ROOT.jar ./retrofy/docker/server
+        run: mv ./retrofy/build/libs/ROOT.jar ./retrofy/docker/server
 
       - name: ls
         working-directory: ./retrofy/docker/server
