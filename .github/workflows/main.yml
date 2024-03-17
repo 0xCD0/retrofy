@@ -24,6 +24,9 @@ jobs:
       #   run: chmod +x gradlew
 
       - name: touch
+        run: ls -al && pwd
+        
+      - name: touch
         working-directory: retrofy/build/libs/
         run: touch ROOT.jar
 
