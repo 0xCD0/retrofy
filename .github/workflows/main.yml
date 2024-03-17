@@ -24,7 +24,8 @@ jobs:
         run: chmod +x gradlew
 
       - name: touch
-        run: touch /home/runner/work/retrofy/retrofy/retrofy/build/libs/ROOT.jar
+        working-directory: ./retrofy/build/libs/
+        run: touch ROOT.jar
 
       # - name: Build Gradle
       #   working-directory: ./retrofy
