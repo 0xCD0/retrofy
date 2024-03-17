@@ -9,22 +9,22 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: ls
-        run: ls -al
+        run: ls -al && pwd
       
       - name: Build Gradle
-        working-directory: /retrofy
+        working-directory: ./retrofy
         run: ./gradlew bootJar
 
       - name: ls bootjar
-        working-directory: /retrofy/build/libs
+        working-directory: ./retrofy/build/libs
         run: ls -al
 
       - name: copy ROOT.jar
-        working-directory: /retrofy/build/libs
-        run: mv ROOT.jar /retrofy/docker/server
+        working-directory: ./retrofy/build/libs
+        run: mv ROOT.jar ./retrofy/docker/server
 
       - name: ls
-        working-directory: /retrofy/docker/server
+        working-directory: ./retrofy/docker/server
         run: ls -al
         
 
