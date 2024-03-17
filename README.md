@@ -22,7 +22,7 @@ services:
     container_name: retrofy-server
     image: 0xcd0/retrofy
     volumes:
-        # set your local game folder on left side (Do not modify the Container Directory path)
+        # set your local game directory on left side (Do not modify the Container Directory path)
         # (Local Directory) : (Container Directory)
       - /retrofy/roms:/retrofy/roms/
     ports:
@@ -57,8 +57,34 @@ networks:
   retrofy-net:
     driver: bridge
 ```
-## Structure of the Game Directory
 
+## Structure of the Game Directory
+The directory structure for the specified local game directory is shown below.
+The following is just an example, all file extensions supported by EmulatorJS are supported by default, including ZIP files of course!
+```
+[Local game directory you set up in docker-compose]
+├── gb
+│   ├── game.gb
+│   └── game.gbc
+├── gba
+│   └── game.gba
+├── n64
+│   └── game.n64
+├── nes
+│   └── game.nes
+├── psx
+│   ├── game.iso
+│   └── game.pbp
+├── segagg
+│   └── game.gg
+├── segamd
+│   └── game.md
+├── segams
+│   └── game.sms
+└── snes
+    ├── game.sfc
+    └── game.snes
+```
 
 
 
