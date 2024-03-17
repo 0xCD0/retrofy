@@ -10,7 +10,10 @@ jobs:
 
       - name: ls
         run: ls -al && pwd
-      
+
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v3
+
       - name: Build Gradle
         working-directory: ./retrofy
         run: ./gradlew bootJar
