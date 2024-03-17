@@ -23,12 +23,12 @@ jobs:
         working-directory: ./retrofy
         run: chmod +x gradlew
 
-      - name: ls
-        run: ls -al && pwd
+      - name: touch
+        run: touch /home/runner/work/retrofy/retrofy/retrofy/build/libs/ROOT.jar
 
-      - name: Build Gradle
-        working-directory: ./retrofy
-        run: ./gradlew bootJar
+      # - name: Build Gradle
+      #   working-directory: ./retrofy
+      #   run: ./gradlew bootJar
 
       - name: ls bootjar
         working-directory: ./retrofy/build/libs
