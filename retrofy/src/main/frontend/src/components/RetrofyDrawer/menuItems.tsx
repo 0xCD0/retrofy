@@ -2,101 +2,24 @@ import * as React from "react"
 import { useNavigate } from "react-router-dom"
 import { Divider, ListItemButton, ListItemIcon, ListItemText } from "@mui/material"
 import { IconNames, MuiIcon } from "../MuiIcon/muiIcon"
-
-interface DrawerListItems {
-    name?: string
-    link?: string
-    icon?: string
-    show: boolean
-}
+import { systemListItems } from "interfaces/systemListItems"
+import systemLists from "statics/systemList"
 
 export default function DrawerListItems(props: any) {
     const navigate = useNavigate()
-    const emulListItems: DrawerListItems[] = [
+    const topItems: systemListItems[] = [
         {
-            name: "Favorite",
+            title: "Favorite",
             link: "/",
             icon: "Star",
             show: false,
-        },
-        {
-            name: "GB / GBC",
-            link: "/game/gb",
-            icon: "SportsEsports",
-            show: true,
-        },
-        {
-            name: "GBA",
-            link: "/game/gba",
-            icon: "SportsEsports",
-            show: true,
-        },
-        {
-            name: "NES",
-            link: "/game/nes",
-            icon: "SportsEsports",
-            show: true,
-        },
-        {
-            name: "SNES",
-            link: "/game/snes",
-            icon: "SportsEsports",
-            show: true,
-        },
-        {
-            name: "N64",
-            link: "/game/n64",
-            icon: "SportsEsports",
-            show: true,
-        },
-        {
-            name: "PSX",
-            link: "/game/psx",
-            icon: "SportsEsports",
-            show: true,
-        },
-        {
-            name: "Sega32X",
-            link: "/game/sega32x",
-            icon: "SportsEsports",
-            show: true,
-        },
-        {
-            name: "SegaCD",
-            link: "/game/segacd",
-            icon: "SportsEsports",
-            show: true,
-        },
-        {
-            name: "SegaGG",
-            link: "/game/segagg",
-            icon: "SportsEsports",
-            show: true,
-        },
-        {
-            name: "SegaMS",
-            link: "/game/segams",
-            icon: "SportsEsports",
-            show: true,
-        },
-        {
-            name: "SegaMD",
-            link: "/game/segamd",
-            icon: "SportsEsports",
-            show: true,
-        },
-        {
-            name: "SegaSaturn",
-            link: "/game/segasaturn",
-            icon: "SportsEsports",
-            show: true,
-        },
+        }
     ]
 
-    const otherListItems: DrawerListItems[] = [
+    const otherListItems: systemListItems[] = [
         {
-            name: "Settings",
-            link: "/",
+            title: "Settings",
+            link: "/settings",
             icon: "Settings",
             show: true,
         },
@@ -104,7 +27,7 @@ export default function DrawerListItems(props: any) {
 
     return (
         <React.Fragment>
-            {emulListItems.map((list, idx) => {
+            {topItems.map((list, idx) => {
                 return (
                     <>
                         {list.show && (
@@ -118,12 +41,34 @@ export default function DrawerListItems(props: any) {
                                 <ListItemIcon>
                                     <MuiIcon icon={list.icon as IconNames} />
                                 </ListItemIcon>
-                                <ListItemText primary={list.name} />
+                                <ListItemText primary={list.title} />
                             </ListItemButton>
                         )}
                     </>
                 )
             })}
+
+            {systemLists.systems.map((list, idx) => {
+                return (
+                    <>
+                        {list.show && (
+                            <ListItemButton
+                                key={idx}
+                                onClick={() => {
+                                    navigate(list.link!!)
+                                    props.setMobileOpen(false)
+                                }}
+                            >
+                                <ListItemIcon>
+                                    <MuiIcon icon={list.icon as IconNames} />
+                                </ListItemIcon>
+                                <ListItemText primary={list.title} />
+                            </ListItemButton>
+                        )}
+                    </>
+                )
+            })}
+
             <Divider sx={{ my: 1 }} />
             {otherListItems.map((list, idx) => {
                 return (
@@ -138,7 +83,7 @@ export default function DrawerListItems(props: any) {
                                 <ListItemIcon>
                                     <MuiIcon icon={list.icon as IconNames} />
                                 </ListItemIcon>
-                                <ListItemText primary={list.name} />
+                                <ListItemText primary={list.title} />
                             </ListItemButton>
                         )}
                     </>
