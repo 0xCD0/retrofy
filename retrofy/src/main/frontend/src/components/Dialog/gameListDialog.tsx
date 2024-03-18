@@ -9,7 +9,7 @@ import DialogTitle from "@mui/material/DialogTitle"
 import axios from "axios"
 import { Alert, LinearProgress, Snackbar, Typography } from "@mui/material"
 
-export default function AlertDialog(props: any) {
+export default function gameListDialog(props: any) {
     const [progress, setProgess] = useState(false)
     const [snackbarOpen, setSnackbarOpen] = useState(false)
 

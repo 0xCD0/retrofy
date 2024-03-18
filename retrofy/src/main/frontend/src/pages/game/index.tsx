@@ -26,7 +26,7 @@ import { romInfo } from "interfaces/romInfo"
 import { ReactComponent as NoRom } from "svg/norom.svg"
 import NoImage from "svg/noimage.svg"
 import RetrofyGameScreen from "components/RetrofyGameScreen/retrofyGameScreen"
-import AlertDialog from "components/AlertDialog/alertDialog"
+import GameListDialog from "components/Dialog/gameListDialog"
 import RetrofyDrawer from "components/RetrofyDrawer/retrofyDrawer"
 import RetrofyAppBar from "components/RetrofyAppBar/retrofyAppBar"
 import systemString from "utils/systemString"
@@ -313,7 +313,7 @@ export default function GameList(props: any) {
                 width={gameScreenWidth}
                 height={gameScreenHeight}
             />
-            <AlertDialog
+            <GameListDialog
                 dialogOpen={dialogOpen}
                 setDialogOpen={setDialogOpen}
                 fetchItem={fetchItem}

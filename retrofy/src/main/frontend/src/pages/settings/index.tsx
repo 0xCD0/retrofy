@@ -6,7 +6,6 @@ import {
     CardActions,
     CardContent,
     IconButton,
-    Input,
     InputAdornment,
     Link,
     Paper,
@@ -18,7 +17,7 @@ import {
 import Box from "@mui/material/Box"
 import Toolbar from "@mui/material/Toolbar"
 import axios from "axios"
-import AlertDialog from "components/AlertDialog/alertDialog"
+import SettingDialog from "components/Dialog/settingDialog"
 import RetrofyDrawer from "components/RetrofyDrawer/retrofyDrawer"
 import RetrofyAppBar from "components/RetrofyAppBar/retrofyAppBar"
 import { AccountCircle, Key, Visibility, VisibilityOff } from "@mui/icons-material"
@@ -35,7 +34,6 @@ export default function Settings(props: any) {
 
     // Dialog
     const [dialogOpen, setDialogOpen] = React.useState(false)
-    const [fetchItem, setFetchItem] = React.useState(false)
 
     const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
         setTabValue(newValue)
@@ -45,7 +43,24 @@ export default function Settings(props: any) {
         event.preventDefault()
     }
 
-    useEffect(() => {}, [props.system, fetchItem])
+    const updateGameDatabase = () => {
+        console.log("test");
+    }
+
+    const updateAllGameLists = () => {
+        console.log("test");
+    }
+
+    const updateUserId = () => {
+        console.log("test");
+    }
+
+    const updateUserPassword = () => {
+        console.log("test");
+    }
+    
+
+    useEffect(() => {}, [props.system])
 
     return (
         <Box sx={{ display: "flex" }}>
@@ -164,7 +179,7 @@ export default function Settings(props: any) {
                                                     <Typography variant="body2">
                                                         <br />
                                                         <TextField
-                                                            id="input-with-icon-textfield"
+                                                            id="text_userId"
                                                             label="Enter the user ID you want to replace"
                                                             InputProps={{
                                                                 startAdornment: (
@@ -201,7 +216,7 @@ export default function Settings(props: any) {
                                                         <Typography variant="body2">
                                                             <br />
                                                             <TextField
-                                                                id="standard-adornment-password"
+                                                                id="text_userPw"
                                                                 label="Enter the user ID you want to replace"
                                                                 type={showPassword ? "text" : "password"}
                                                                 InputProps={{
@@ -247,7 +262,7 @@ export default function Settings(props: any) {
                 </Paper>
             </Box>
 
-            <AlertDialog
+            <SettingDialog
                 dialogOpen={dialogOpen}
                 setDialogOpen={setDialogOpen}
                 fetchItem={fetchItem}
