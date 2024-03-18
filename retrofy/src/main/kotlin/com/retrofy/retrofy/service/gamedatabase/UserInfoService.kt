@@ -27,4 +27,21 @@ class UserInfoService(val dsl: DSLContext) {
         }
     }
 
+    fun updateUserInfo(userId: String, newUserId: String): Boolean {
+        val result = dsl.update(USER)
+            .set(USER.USER_ID, newUserId)
+            .where(USER.USER_ID.eq(userId))
+            .execute()
+
+        return result == 1
+    }
+
+    fun updateUserPassword(userId: String, userPw: String): Boolean{
+        val result = dsl.update(USER)
+            .set(USER.PASSWORD, userPw)
+            .where(USER.USER_ID.eq(userId))
+            .execute()
+
+        return result == 1
+    }
 }

@@ -17,12 +17,15 @@ import {
 import Box from "@mui/material/Box"
 import Toolbar from "@mui/material/Toolbar"
 import axios from "axios"
-import SettingDialog from "components/Dialog/settingDialog"
+import GameDatabaseDialog from "components/gameDatabaseDialog/gameDatabaseDialog"
 import RetrofyDrawer from "components/RetrofyDrawer/retrofyDrawer"
 import RetrofyAppBar from "components/RetrofyAppBar/retrofyAppBar"
 import { AccountCircle, Key, Visibility, VisibilityOff } from "@mui/icons-material"
+import { useCookies } from "react-cookie"
 
 export default function Settings(props: any) {
+    const [cookies, setCookie, removeCookie] = useCookies(['userInfo']);
+    
     // Drawer
     const [mobileOpen, setMobileOpen] = useState(false)
     const [isClosing, setIsClosing] = useState(false)
@@ -44,15 +47,17 @@ export default function Settings(props: any) {
     }
 
     const updateGameDatabase = () => {
-        console.log("test");
+        // atob(cookies.userInfo)
+
+
     }
 
     const updateAllGameLists = () => {
-        console.log("test");
+        console.log(cookies.userInfo);
     }
 
     const updateUserId = () => {
-        console.log("test");
+        console.log(cookies.userInfo);
     }
 
     const updateUserPassword = () => {
@@ -137,7 +142,7 @@ export default function Settings(props: any) {
                                                     </Typography>
                                                 </CardContent>
                                                 <CardActions>
-                                                    <Button variant="contained">Update Game database</Button>
+                                                    <Button variant="contained" onClick={updateGameDatabase}>Update Game database</Button>
                                                 </CardActions>
                                             </React.Fragment>
                                         </Box>
@@ -158,7 +163,7 @@ export default function Settings(props: any) {
                                                         </Typography>
                                                     </CardContent>
                                                     <CardActions>
-                                                        <Button variant="contained">Update game list for All systems</Button>
+                                                        <Button variant="contained" onClick={updateAllGameLists}>Update game list for All systems</Button>
                                                     </CardActions>
                                                 </React.Fragment>
                                             </Box>
@@ -199,7 +204,7 @@ export default function Settings(props: any) {
                                                     </Typography>
                                                 </CardContent>
                                                 <CardActions>
-                                                    <Button variant="contained">Update username</Button>
+                                                    <Button variant="contained" onClick={updateUserId}>Update username</Button>
                                                 </CardActions>
                                             </React.Fragment>
                                         </Box>
@@ -230,8 +235,7 @@ export default function Settings(props: any) {
                                                                         <InputAdornment position="end">
                                                                             <IconButton
                                                                                 aria-label="toggle password visibility"
-                                                                                onClick={handleClickShowPassword}
-                                                                                onMouseDown={handleMouseDownPassword}
+                                                                                onClick={updateUserPassword}
                                                                             >
                                                                                 {showPassword ? <VisibilityOff /> : <Visibility />}
                                                                             </IconButton>
@@ -262,11 +266,9 @@ export default function Settings(props: any) {
                 </Paper>
             </Box>
 
-            <SettingDialog
+            <GameDatabaseDialog
                 dialogOpen={dialogOpen}
                 setDialogOpen={setDialogOpen}
-                fetchItem={fetchItem}
-                setFetchItem={setFetchItem}
                 system={props.system}
             />
         </Box>

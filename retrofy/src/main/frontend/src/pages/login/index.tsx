@@ -9,8 +9,10 @@ import { MuiIcon } from "components/MuiIcon/muiIcon"
 import { IconButton } from "@mui/material"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
+import { useCookies } from "react-cookie"
 
 export default function SignIn() {
+    const [cookies, setCookie, removeCookie] = useCookies(['userInfo']);
     const navigator = useNavigate()
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -20,6 +22,8 @@ export default function SignIn() {
             .post("/api/v1/auth/login", formData)
             .then((response) => {
                 console.log(response)
+                
+                setCookie("userInfo", btoa(formData.get("id")!!.toString()))
                 navigator("/")
             })
             .catch((error) => {

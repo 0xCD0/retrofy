@@ -9,7 +9,7 @@ import DialogTitle from "@mui/material/DialogTitle"
 import axios from "axios"
 import { Alert, LinearProgress, Snackbar, Typography } from "@mui/material"
 
-export default function gameListDialog(props: any) {
+export default function UserInfoDialog(props: any) {
     const [progress, setProgess] = useState(false)
     const [snackbarOpen, setSnackbarOpen] = useState(false)
 
@@ -61,7 +61,7 @@ export default function gameListDialog(props: any) {
                     <DialogTitle id="alert-dialog-title">Refresh Game list</DialogTitle>
                     <DialogContent>
                         <DialogContentText id="alert-dialog-description">
-                            {`This action updates the list of games currently in the game directory. Any games on the ${props.system} system that were previously listed will be reset. Depending on your server's specifications and the number of games, this may take a long time. Are you sure you want to continue?`}
+                            {`This action updates the list of all games currently in the game directory. Any games on the ${props.system} system that were previously listed will be reset. Depending on your server's specifications and the number of games, this may take a long time. Are you sure you want to continue?`}
                         </DialogContentText>
                     </DialogContent>
                     <DialogActions>
