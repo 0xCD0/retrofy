@@ -153,7 +153,7 @@ export default function Settings(props: any) {
                             )}
                             {tabVaule === 1 && (
                                 <>
-                                        <Card variant="outlined">
+                                    <Card variant="outlined">
                                         <Box p={2} mb={1}>
                                             <React.Fragment>
                                                 <CardContent>
@@ -174,7 +174,12 @@ export default function Settings(props: any) {
                                                                 ),
                                                             }}
                                                             variant="standard"
-                                                            sx={{ width: 400 }}
+                                                            sx={{
+                                                                width: {
+                                                                    xs: 280,
+                                                                    md: 400,
+                                                                },
+                                                            }}
                                                         />
                                                     </Typography>
                                                 </CardContent>
@@ -182,51 +187,56 @@ export default function Settings(props: any) {
                                                     <Button variant="contained">Update username</Button>
                                                 </CardActions>
                                             </React.Fragment>
-                                            </Box>
-                                        </Card>
+                                        </Box>
+                                    </Card>
                                     <Box mt={2}>
                                         <Card variant="outlined">
-                                        <Box p={2} mb={1}>
-                                            <React.Fragment>
-                                                <CardContent>
-                                                    <Typography variant="h5" component="div">
-                                                        Change user password
-                                                    </Typography>
+                                            <Box p={2} mb={1}>
+                                                <React.Fragment>
+                                                    <CardContent>
+                                                        <Typography variant="h5" component="div">
+                                                            Change user password
+                                                        </Typography>
 
-                                                    <Typography variant="body2">
-                                                        <br />
-                                                        <TextField
-                                                            id="standard-adornment-password"
-                                                            label="Enter the user ID you want to replace"
-                                                            type={showPassword ? "text" : "password"}
-                                                            InputProps={{
-                                                                startAdornment: (
-                                                                    <InputAdornment position="start">
-                                                                        <Key />
-                                                                    </InputAdornment>
-                                                                ),
+                                                        <Typography variant="body2">
+                                                            <br />
+                                                            <TextField
+                                                                id="standard-adornment-password"
+                                                                label="Enter the user ID you want to replace"
+                                                                type={showPassword ? "text" : "password"}
+                                                                InputProps={{
+                                                                    startAdornment: (
+                                                                        <InputAdornment position="start">
+                                                                            <Key />
+                                                                        </InputAdornment>
+                                                                    ),
 
-                                                                endAdornment: (
-                                                                    <InputAdornment position="end">
-                                                                        <IconButton
-                                                                            aria-label="toggle password visibility"
-                                                                            onClick={handleClickShowPassword}
-                                                                            onMouseDown={handleMouseDownPassword}
-                                                                        >
-                                                                            {showPassword ? <VisibilityOff /> : <Visibility />}
-                                                                        </IconButton>
-                                                                    </InputAdornment>
-                                                                ),
-                                                            }}
-                                                            variant="standard"
-                                                            sx={{ width: 400 }}
-                                                        />
-                                                    </Typography>
-                                                </CardContent>
-                                                <CardActions>
-                                                    <Button variant="contained">Update Password</Button>
-                                                </CardActions>
-                                            </React.Fragment>
+                                                                    endAdornment: (
+                                                                        <InputAdornment position="end">
+                                                                            <IconButton
+                                                                                aria-label="toggle password visibility"
+                                                                                onClick={handleClickShowPassword}
+                                                                                onMouseDown={handleMouseDownPassword}
+                                                                            >
+                                                                                {showPassword ? <VisibilityOff /> : <Visibility />}
+                                                                            </IconButton>
+                                                                        </InputAdornment>
+                                                                    ),
+                                                                }}
+                                                                variant="standard"
+                                                                sx={{
+                                                                    width: {
+                                                                        xs: 280,
+                                                                        md: 400,
+                                                                    },
+                                                                }}
+                                                            />
+                                                        </Typography>
+                                                    </CardContent>
+                                                    <CardActions>
+                                                        <Button variant="contained">Update Password</Button>
+                                                    </CardActions>
+                                                </React.Fragment>
                                             </Box>
                                         </Card>
                                     </Box>
