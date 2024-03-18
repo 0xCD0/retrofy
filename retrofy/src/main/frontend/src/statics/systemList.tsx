@@ -48,14 +48,14 @@ export const systems: systemListItems[] = [
         systemName: "sega32x",
         link: "/game/sega32x",
         icon: "SportsEsports",
-        show: true,
+        show: false,
     },
     {
         title: "SegaCD",
-        systemName: "segacd",
+        systemName: "segaCD",
         link: "/game/segacd",
         icon: "SportsEsports",
-        show: true,
+        show: false,
     },
     {
         title: "SegaGG",
@@ -83,7 +83,7 @@ export const systems: systemListItems[] = [
         systemName: "segaSaturn",
         link: "/game/segasaturn",
         icon: "SportsEsports",
-        show: true,
+        show: false,
     },
 ]
 

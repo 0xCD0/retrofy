@@ -72,6 +72,9 @@ The following is just an example, all file extensions supported by EmulatorJS ar
 │   └── game.n64
 ├── nes
 │   └── game.nes
+├── snes
+│   ├── game.sfc
+│   └── game.snes
 ├── psx
 │   ├── game.iso
 │   └── game.pbp
@@ -79,11 +82,8 @@ The following is just an example, all file extensions supported by EmulatorJS ar
 │   └── game.gg
 ├── segamd
 │   └── game.md
-├── segams
-│   └── game.sms
-└── snes
-    ├── game.sfc
-    └── game.snes
+└── segams
+    └── game.sms
 ```
 
 ## Support Systems
