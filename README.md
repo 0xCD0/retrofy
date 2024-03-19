@@ -127,8 +127,10 @@ The following is just an example, all file extensions supported by EmulatorJS ar
     └── game.sms
 ```
 
-
 ## RoadMap
 1. The goal is to be able to run any system supported by Emulator JS.
 2. Overall UI design improvements
 3. Multi Language support
+
+## Known issues
+1. If the file name contains square brackets ('[', ']'), the file will not be read. We are aware of this issue and are working on a fix.
