@@ -18,7 +18,7 @@ version: '3.8'
 x-env: &env
   environment:
   - MYSQL_DATABASE=retrofy
-  - MYSQL_ROOT_PASSWORD=password # Set user custom db password
+  - MYSQL_ROOT_PASSWORD={Set user custom db password}
 
 name: retrofy
 services:
