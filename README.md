@@ -20,9 +20,9 @@ I will be supporting all systems supported by EmulatorJS in the near future.
  - SNES
  - N64
  - PSX
- - SEGA GG
- - SEGA MS
- - SEGA MD
+ - SEGA Game Gear
+ - SEGA Master System
+ - SEGA Mega Drive
 
 
 ## How to run
