@@ -58,6 +58,15 @@ networks:
     driver: bridge
 ```
 
+## When run first time
+・The initial ID is `admin` and the password is `p@ssw0rd`.<br/>
+Don't worry. You can change your ID and password on the settings screen after logging in.
+![image](https://github.com/0xCD0/retrofy/assets/4960838/4475a542-96b5-4315-946c-e71621e0a98c)
+
+・Update game database and update game list of your own games on Settings menu.
+![image](https://github.com/0xCD0/retrofy/assets/4960838/68451ea6-4b00-4fe2-ab08-69398c9a689a)
+
+
 ## Structure of the Game Directory
 The directory structure for the specified local game directory is shown below.
 The following is just an example, all file extensions supported by EmulatorJS are supported by default, including ZIP files of course!
