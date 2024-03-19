@@ -16,7 +16,6 @@ export default function TitleBar(props: any) {
 
     const handleLogout = () => {
         axios.get("/api/v1/auth/logout").then((response) => {
-            console.log(response)
             navigator("/login")
         })
     }

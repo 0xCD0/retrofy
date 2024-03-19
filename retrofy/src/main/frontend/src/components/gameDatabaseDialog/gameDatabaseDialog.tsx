@@ -15,7 +15,6 @@ export default function GameDatabaseDialog(props: any) {
     const [isError, setIsError] = useState(false)
 
     const handleDialogResult = (result: Boolean) => {
-        console.log(result)
         if (result) {
             setProgess(true)
             updateGameLists()

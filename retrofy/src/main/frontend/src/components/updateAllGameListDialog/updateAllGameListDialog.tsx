@@ -45,7 +45,6 @@ export default function UpdateAllGameListDialog(props: any) {
                             .post("/api/v1/romList/update", formData)
                             .then(function (response) {
                                 setNowSystem(system.fullSystemName!!)
-                                console.log(system.fullSystemName!!)
                                 setIsError(false)
                                 console.log(`Refresh complete : ${system.systemName}`)
                             })

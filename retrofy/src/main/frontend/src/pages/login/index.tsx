@@ -31,7 +31,7 @@ export default function SignIn() {
             .catch((error) => {
                 setIsError(true)
                 setIsLoading(false)
-                console.log("error :" + error)
+                console.log(error)
             })
     }
 
@@ -44,8 +44,6 @@ export default function SignIn() {
                 if (isLoggedin === true) {
                     navigator("/")
                 }
-
-                console.log(isLoggedin)
             })
             .catch((error) => {
                 console.log(error)

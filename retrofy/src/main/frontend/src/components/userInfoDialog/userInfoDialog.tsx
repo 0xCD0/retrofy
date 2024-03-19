@@ -49,7 +49,6 @@ export default function UserInfoDialog(props: any) {
                 setSnackbarOpen(true)
 
                 axios.get("/api/v1/auth/logout").then((response) => {
-                    console.log(response)
                     navigator("/login")
                 })
             })
@@ -72,7 +71,6 @@ export default function UserInfoDialog(props: any) {
                 setSnackbarOpen(true)
 
                 axios.get("/api/v1/auth/logout").then((response) => {
-                    console.log(response)
                     navigator("/login")
                 })
             })
