@@ -8,10 +8,13 @@ import DialogContentText from "@mui/material/DialogContentText"
 import DialogTitle from "@mui/material/DialogTitle"
 import axios from "axios"
 import { Alert, LinearProgress, Snackbar, Typography } from "@mui/material"
+import systemList from "statics/systemList"
 
 export default function UpdateAllGameListDialog(props: any) {
     const [progress, setProgess] = useState(false)
     const [snackbarOpen, setSnackbarOpen] = useState(false)
+    const [isError, setIsError] = useState(false)
+    const [nowSystem, setNowSystem] = useState("")
 
     const handleDialogResult = (result: Boolean) => {
         console.log(result)
@@ -31,22 +34,34 @@ export default function UpdateAllGameListDialog(props: any) {
         setSnackbarOpen(false)
     }
 
-    const updateGameLists = () => {
-        const formData = new FormData()
-        formData.append("system", props.system)
+    const updateGameLists = async () => {
+        try {
+            // Todo. can't wait result..
+            var result = await systemList.systems.map(async (system) => {
+                if (system.show) {
+                    setNowSystem(system.fullSystemName!!)
+                    const formData = new FormData()
+                    formData.append("system", system.systemName!!)
 
-        axios
-            .post("/api/v1/romList/update", formData)
-            .then(function (response) {
-                setSnackbarOpen(true)
-                props.setDialogOpen(false)
-                setProgess(false)
-                props.setFetchItem(!props.fetchItem)
+                    var result = await axios
+                        .post("/api/v1/romList/update", formData)
+                        .then(function (response) {
+                            setIsError(false)
+                            console.log(`Refresh complete : ${system.systemName}`)
+                        })
+                        .catch((error) => {
+                            setIsError(true)
+                            throw error
+                        })
+                    console.log(result);
+                }
             })
-            .catch((error) => {
-                console.log(error)
-                setProgess(false)
-            })
+            setSnackbarOpen(true)
+            props.setDialogOpen(false)
+            setProgess(false)
+        } catch (e) {
+            setProgess(false)
+        }
     }
 
     return (
@@ -58,7 +73,7 @@ export default function UpdateAllGameListDialog(props: any) {
                     aria-labelledby="alert-dialog-title"
                     aria-describedby="alert-dialog-description"
                 >
-                    <DialogTitle id="alert-dialog-title">Refresh Game list</DialogTitle>
+                    <DialogTitle id="alert-dialog-title">Update game list for All systems</DialogTitle>
                     <DialogContent>
                         <DialogContentText id="alert-dialog-description">
                             {`This action updates the list of all games in the All Games directory. Games on all systems that were previously listed are initialized. Depending on your server specifications and the number of games, this can take a long time. Are you sure you want to proceed?`}
@@ -90,6 +105,8 @@ export default function UpdateAllGameListDialog(props: any) {
                             <Typography mb={3}>
                                 We're currently updating the list of games. This may take a long time depending on how many games are preserved.
                             </Typography>
+
+                            <Typography mb={3}>Current system : {nowSystem}</Typography>
                             <LinearProgress />
                         </DialogContentText>
                     </DialogContent>
@@ -102,8 +119,13 @@ export default function UpdateAllGameListDialog(props: any) {
                 anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
                 onClose={handleSnackbarClose}
             >
-                <Alert onClose={handleSnackbarClose} severity="success" variant="filled" sx={{ width: "100%", color: "#FFFFFF" }}>
-                    Successfully updated the game list !
+                <Alert
+                    onClose={handleSnackbarClose}
+                    severity={isError ? "error" : "success"}
+                    variant="filled"
+                    sx={{ width: "100%", color: "#FFFFFF" }}
+                >
+                    {isError ? "Update failed : An error occurred while updating game lists" : "Successfully updated the all systems game list !"}
                 </Alert>
             </Snackbar>
         </React.Fragment>

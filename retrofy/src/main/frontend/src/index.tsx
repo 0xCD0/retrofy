@@ -21,7 +21,7 @@ root.render(
                 <Route path="/" element={<App />} />
                 <Route path="/login" element={<Login />} />
                 {systemList.systems.map((system) => {
-                    return system.show ? <Route path={system.link} element={<GameList system={system.systemName} />} /> : ""
+                    return system.show ? <Route path={system.link} element={<GameList system={system.systemName} fullSystemName={system.fullSystemName} />} /> : ""
                 })}
                 <Route path="/settings" element={<Settings/>}/>
             </Routes>

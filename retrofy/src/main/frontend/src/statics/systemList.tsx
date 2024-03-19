@@ -4,6 +4,7 @@ export const systems: systemListItems[] = [
     {
         title: "GB / GBC",
         systemName: "gb",
+        fullSystemName: "Game Boy / Game Boy Color",
         link: "/game/gb",
         icon: "SportsEsports",
         show: true,
@@ -11,6 +12,7 @@ export const systems: systemListItems[] = [
     {
         title: "GBA",
         systemName: "gba",
+        fullSystemName: "Game Boy Advance",
         link: "/game/gba",
         icon: "SportsEsports",
         show: true,
@@ -18,6 +20,7 @@ export const systems: systemListItems[] = [
     {
         title: "NES",
         systemName: "nes",
+        fullSystemName: "Nintendo Entertainment System",
         link: "/game/nes",
         icon: "SportsEsports",
         show: true,
@@ -25,6 +28,7 @@ export const systems: systemListItems[] = [
     {
         title: "SNES",
         systemName: "snes",
+        fullSystemName: "Super Nintendo Entertainment System",
         link: "/game/snes",
         icon: "SportsEsports",
         show: true,
@@ -32,6 +36,7 @@ export const systems: systemListItems[] = [
     {
         title: "N64",
         systemName: "n64",
+        fullSystemName: "Nintendo 64",
         link: "/game/n64",
         icon: "SportsEsports",
         show: true,
@@ -39,6 +44,7 @@ export const systems: systemListItems[] = [
     {
         title: "PSX",
         systemName: "psx",
+        fullSystemName: "PlayStation",
         link: "/game/psx",
         icon: "SportsEsports",
         show: true,
@@ -46,6 +52,7 @@ export const systems: systemListItems[] = [
     {
         title: "Sega32X",
         systemName: "sega32x",
+        fullSystemName: "Sega 32x",
         link: "/game/sega32x",
         icon: "SportsEsports",
         show: false,
@@ -53,6 +60,7 @@ export const systems: systemListItems[] = [
     {
         title: "SegaCD",
         systemName: "segaCD",
+        fullSystemName: "Sega CD",
         link: "/game/segacd",
         icon: "SportsEsports",
         show: false,
@@ -60,6 +68,7 @@ export const systems: systemListItems[] = [
     {
         title: "SegaGG",
         systemName: "segaGG",
+        fullSystemName: "Sega Game Gear",
         link: "/game/segagg",
         icon: "SportsEsports",
         show: true,
@@ -67,6 +76,7 @@ export const systems: systemListItems[] = [
     {
         title: "SegaMS",
         systemName: "segaMS",
+        fullSystemName: "Sega Master System",
         link: "/game/segams",
         icon: "SportsEsports",
         show: true,
@@ -74,6 +84,7 @@ export const systems: systemListItems[] = [
     {
         title: "SegaMD",
         systemName: "segaMD",
+        fullSystemName: "Sega Mega Drive",
         link: "/game/segamd",
         icon: "SportsEsports",
         show: true,
@@ -81,6 +92,7 @@ export const systems: systemListItems[] = [
     {
         title: "SegaSaturn",
         systemName: "segaSaturn",
+        fullSystemName: "Sega Saturn",
         link: "/game/segasaturn",
         icon: "SportsEsports",
         show: false,

@@ -16,12 +16,13 @@ import {
 } from "@mui/material"
 import Box from "@mui/material/Box"
 import Toolbar from "@mui/material/Toolbar"
-import axios from "axios"
 import GameDatabaseDialog from "components/gameDatabaseDialog/gameDatabaseDialog"
 import RetrofyDrawer from "components/RetrofyDrawer/retrofyDrawer"
 import RetrofyAppBar from "components/RetrofyAppBar/retrofyAppBar"
 import { AccountCircle, Key, Visibility, VisibilityOff } from "@mui/icons-material"
 import { useCookies } from "react-cookie"
+import UpdateAllGameListDialog from "components/updateAllGameListDialog/updateAllGameListDialog"
+import UserInfoDialog from "components/userInfoDialog/userInfoDialog"
 
 export default function Settings(props: any) {
     const [cookies, setCookie, removeCookie] = useCookies(['userInfo']);
@@ -37,6 +38,8 @@ export default function Settings(props: any) {
 
     // GameDatabaseDialog
     const [gameDatabaseDialogOpen, setGameDatabaseDialogOpen] = React.useState(false)
+    const [updateAllGameListDialogOpen, setUpdateAllGameListDialogOpen] = React.useState(false)
+    const [userInfoDialogOpen, setUserInfoDialogOpen] = React.useState(false)
 
 
     const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -52,7 +55,7 @@ export default function Settings(props: any) {
     }
 
     const updateAllGameLists = () => {
-        console.log(cookies.userInfo);
+        setUpdateAllGameListDialogOpen(true);
     }
 
     const updateUserId = () => {
@@ -267,8 +270,15 @@ export default function Settings(props: any) {
             <GameDatabaseDialog
                 dialogOpen={gameDatabaseDialogOpen}
                 setDialogOpen={setGameDatabaseDialogOpen}
-                system={props.system}
             />
+            <UpdateAllGameListDialog
+                dialogOpen={updateAllGameListDialogOpen}
+                setDialogOpen={setUpdateAllGameListDialogOpen}
+            />
+            {/* <UserInfoDialog
+                dialogOpen={UserInfoDialog}
+                setDialogOpen={userInfoDialogOpen}
+            /> */}
         </Box>
     )
 }

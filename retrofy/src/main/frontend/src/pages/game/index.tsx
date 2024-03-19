@@ -26,11 +26,9 @@ import { romInfo } from "interfaces/romInfo"
 import { ReactComponent as NoRom } from "svg/norom.svg"
 import NoImage from "svg/noimage.svg"
 import RetrofyGameScreen from "components/RetrofyGameScreen/retrofyGameScreen"
-// import GameListDialog from "components/Dialog/gameListDialog"
 import GameListDialog from "components/gameListDialog/gameListDialog"
 import RetrofyDrawer from "components/RetrofyDrawer/retrofyDrawer"
 import RetrofyAppBar from "components/RetrofyAppBar/retrofyAppBar"
-import systemString from "utils/systemString"
 
 export default function GameList(props: any) {
     // Drawer
@@ -150,7 +148,7 @@ export default function GameList(props: any) {
                                     },
                                 }}
                             >
-                                {systemString(props.system)}
+                                {props.fullSystemName}
                             </Typography>
 
                             <Button

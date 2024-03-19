@@ -54,7 +54,7 @@ export default function GameDatabaseDialog(props: any) {
                     aria-labelledby="alert-dialog-title"
                     aria-describedby="alert-dialog-description"
                 >
-                    <DialogTitle id="alert-dialog-title">Refresh Game list</DialogTitle>
+                    <DialogTitle id="alert-dialog-title">Update Game Database</DialogTitle>
                     <DialogContent>
                         <DialogContentText id="alert-dialog-description">
                             {`This task fetches information from Game Database spreadsheet to obtain information about each game and its thumbnail. Depending on the server's specifications, this task may take a long time. Do you want to continue?`}
