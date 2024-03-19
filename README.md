@@ -7,6 +7,24 @@ This project is powered by [emulatorJS](https://emulatorjs.org/) project. You ca
 
 And this project was created solely as a hobby.
 
+## Features
+- XInput controller support (Tested only XInput controller, maybe supports another controller..)
+- Authentication support
+
+## Support Systems
+I will be supporting all systems supported by EmulatorJS in the near future.
+
+ - GB / GBC
+ - GBA
+ - NES
+ - SNES
+ - N64
+ - PSX
+ - SEGA GG
+ - SEGA MS
+ - SEGA MD
+
+
 ## How to run
 You can use docker-compose to paste the yaml below, change the password for the database, and run it.
 
@@ -109,18 +127,6 @@ The following is just an example, all file extensions supported by EmulatorJS ar
     └── game.sms
 ```
 
-## Support Systems
-I will be supporting all systems supported by EmulatorJS in the near future.
-
- - GB / GBC
- - GBA
- - NES
- - SNES
- - N64
- - PSX
- - SEGA GG
- - SEGA MS
- - SEGA MD
 
 ## RoadMap
 1. The goal is to be able to run any system supported by Emulator JS.
