@@ -111,4 +111,3 @@ The following is just an example, all file extensions supported by EmulatorJS ar
 ## RoadMap
 1. The goal is to be able to run any system supported by Emulator JS.
 2. Overall UI design improvements
-3. 
