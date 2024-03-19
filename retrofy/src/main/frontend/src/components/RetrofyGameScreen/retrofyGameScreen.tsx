@@ -23,8 +23,6 @@ export default function RetrofyGameScreen(props: any) {
         props.setOpen(false)
     }
 
-    const handleGameStart = () => {}
-
     return (
         <React.Fragment>
             <Dialog
@@ -70,7 +68,6 @@ export default function RetrofyGameScreen(props: any) {
                     EJS_gameUrl={props.romPath}
                     EJS_startOnLoaded={true}
                     EJS_pathtodata={defaultPathToData}
-                    EJS_onGameStart={handleGameStart}
                     width={props.width}
                     height={props.height}
                 />

@@ -10,7 +10,7 @@ export default function RetrofyDrawer(props: any) {
                 <DrawerListItems setMobileOpen={props.setMobileOpen} />
             </List>
         </div>
-    )
+    );
 
     const handleDrawerClose = () => {
         props.setIsClosing(true)

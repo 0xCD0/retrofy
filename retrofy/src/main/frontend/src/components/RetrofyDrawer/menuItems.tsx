@@ -6,7 +6,7 @@ import { systemListItems } from "interfaces/systemListItems"
 import systemLists from "statics/systemList"
 
 export default function DrawerListItems(props: any) {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const topItems: systemListItems[] = [
         {
             title: "Favorite",
@@ -34,8 +34,8 @@ export default function DrawerListItems(props: any) {
                             <ListItemButton
                                 key={idx}
                                 onClick={() => {
-                                    navigate(list.link!!)
-                                    props.setMobileOpen(false)
+                                    navigate(list.link!!);
+                                    props.setMobileOpen(false);
                                 }}
                             >
                                 <ListItemIcon>
@@ -55,8 +55,8 @@ export default function DrawerListItems(props: any) {
                             <ListItemButton
                                 key={idx}
                                 onClick={() => {
-                                    navigate(list.link!!)
-                                    props.setMobileOpen(false)
+                                    navigate(list.link!!);
+                                    props.setMobileOpen(false);
                                 }}
                             >
                                 <ListItemIcon>
@@ -77,7 +77,7 @@ export default function DrawerListItems(props: any) {
                             <ListItemButton
                                 key={idx}
                                 onClick={() => {
-                                    navigate(list.link!!)
+                                    navigate(list.link!!);
                                 }}
                             >
                                 <ListItemIcon>

@@ -10,39 +10,41 @@ import axios from "axios"
 import { Alert, LinearProgress, Snackbar, Typography } from "@mui/material"
 
 export default function GameDatabaseDialog(props: any) {
-    const [progress, setProgess] = useState(false)
-    const [snackbarOpen, setSnackbarOpen] = useState(false)
-    const [isError, setIsError] = useState(false)
+    const [progress, setProgess] = useState(false);
+    const [snackbarOpen, setSnackbarOpen] = useState(false);
+    const [isError, setIsError] = useState(false);
 
     const handleDialogResult = (result: Boolean) => {
         if (result) {
-            setProgess(true)
-            updateGameLists()
+            setProgess(true);
+            updateGameLists();
         } else {
-            handleClose()
+            handleClose();
         }
     }
 
     const handleClose = () => {
-        props.setDialogOpen(false)
+        props.setDialogOpen(false);
     }
 
     const handleSnackbarClose = () => {
-        setSnackbarOpen(false)
+        setSnackbarOpen(false);
     }
 
     const updateGameLists = () => {
         axios
             .get("/api/v1/gameDatabase/updateDatabase")
             .then(function (response) {
-                setSnackbarOpen(true)
-                props.setDialogOpen(false)
-                setProgess(false)
+                setSnackbarOpen(true);
+                props.setDialogOpen(false);
+                setProgess(false);
             })
             .catch((error) => {
-                console.log(error)
-                setIsError(true)
-                setProgess(false)
+                console.log(error);
+                setIsError(true);
+                setSnackbarOpen(true);
+                setProgess(false);
+                props.setDialogOpen(false);
             })
     }
 

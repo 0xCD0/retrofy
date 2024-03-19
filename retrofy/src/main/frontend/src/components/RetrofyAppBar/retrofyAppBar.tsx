@@ -6,17 +6,17 @@ import { Box, Button, IconButton, Toolbar, Typography } from "@mui/material"
 import { MuiIcon } from "components/MuiIcon/muiIcon"
 
 export default function TitleBar(props: any) {
-    const navigator = useNavigate()
+    const navigator = useNavigate();
 
     const handleDrawerToggle = () => {
         if (!props.isClosing) {
-            props.setMobileOpen(!props.mobileOpen)
+            props.setMobileOpen(!props.mobileOpen);
         }
     }
 
     const handleLogout = () => {
         axios.get("/api/v1/auth/logout").then((response) => {
-            navigator("/login")
+            navigator("/login");
         })
     }
 

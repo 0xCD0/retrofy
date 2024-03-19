@@ -119,7 +119,6 @@ class RomListService(val dsl: DSLContext) {
             val url = imageURL.let { URI(it).toURL() }
             val inputStream = url.openStream()
 
-            logger.info("Thumbnail Url : $url")
             return Base64.encodeBase64String(inputStream.readAllBytes())
         } catch (e: Exception) {
             return ""

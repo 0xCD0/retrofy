@@ -11,26 +11,26 @@ import { Alert, LinearProgress, Snackbar, Typography } from "@mui/material"
 import systemList from "statics/systemList"
 
 export default function UpdateAllGameListDialog(props: any) {
-    const [progress, setProgess] = useState(false)
-    const [snackbarOpen, setSnackbarOpen] = useState(false)
-    const [isError, setIsError] = useState(false)
-    const [nowSystem, setNowSystem] = useState("")
+    const [progress, setProgess] = useState(false);
+    const [snackbarOpen, setSnackbarOpen] = useState(false);
+    const [isError, setIsError] = useState(false);
+    const [nowSystem, setNowSystem] = useState("");
 
     const handleDialogResult = (result: Boolean) => {
         if (result) {
-            setProgess(true)
-            updateGameLists()
+            setProgess(true);
+            updateGameLists();
         } else {
-            handleClose()
+            handleClose();
         }
     }
 
     const handleClose = () => {
-        props.setDialogOpen(false)
+        props.setDialogOpen(false);
     }
 
     const handleSnackbarClose = () => {
-        setSnackbarOpen(false)
+        setSnackbarOpen(false);
     }
 
     const updateGameLists = async () => {
@@ -55,16 +55,16 @@ export default function UpdateAllGameListDialog(props: any) {
                 })
             )
         } catch (e) {
-            setIsError(true)
+            setIsError(true);
         } finally {
-            setSnackbarOpen(true)
-            props.setDialogOpen(false)
-            setProgess(false)
-            setNowSystem("")
+            setSnackbarOpen(true);
+            props.setDialogOpen(false);
+            setProgess(false);
+            setNowSystem("");
         }
     }
 
-    useEffect(() => {}, [nowSystem])
+    useEffect(() => {}, [nowSystem]);
 
     return (
         <React.Fragment>
@@ -84,14 +84,14 @@ export default function UpdateAllGameListDialog(props: any) {
                     <DialogActions>
                         <Button
                             onClick={() => {
-                                handleDialogResult(false)
+                                handleDialogResult(false);
                             }}
                         >
                             No
                         </Button>
                         <Button
                             onClick={() => {
-                                handleDialogResult(true)
+                                handleDialogResult(true);
                             }}
                             autoFocus
                         >

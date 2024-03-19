@@ -32,86 +32,87 @@ import RetrofyAppBar from "components/RetrofyAppBar/retrofyAppBar"
 
 export default function GameList(props: any) {
     // Drawer
-    const [mobileOpen, setMobileOpen] = useState(false)
-    const [isClosing, setIsClosing] = useState(false)
-    const drawerWidth = 250
+    const [mobileOpen, setMobileOpen] = useState(false);
+    const [isClosing, setIsClosing] = useState(false);
+    const drawerWidth = 250;
 
     // Game screen
-    const [gameScreenWidth, setGameScreenWidth] = useState(640)
-    const [gameScreenHeight, setGameScreenHeight] = useState(480)
-    const [openGameScreen, setOpenGameScreen] = useState(false)
-    const [romPath, setRomPath] = useState("")
-    const [romTitle, setRomTitle] = useState("")
+    const [gameScreenWidth, setGameScreenWidth] = useState(640);
+    const [gameScreenHeight, setGameScreenHeight] = useState(480);
+    const [openGameScreen, setOpenGameScreen] = useState(false);
+    const [romPath, setRomPath] = useState("");
+    const [romTitle, setRomTitle] = useState("");
 
     // Screen size
-    const theme = useTheme()
-    const greaterThanMid = useMediaQuery(theme.breakpoints.up("md"))
-    const smallToMid = useMediaQuery(theme.breakpoints.between("sm", "md"))
-    const lessThanSmall = useMediaQuery(theme.breakpoints.down("sm"))
+    const theme = useTheme();
+    const greaterThanMid = useMediaQuery(theme.breakpoints.up("md"));
+    const smallToMid = useMediaQuery(theme.breakpoints.between("sm", "md"));
+    const lessThanSmall = useMediaQuery(theme.breakpoints.down("sm"));
 
     // Dialog
-    const [dialogOpen, setDialogOpen] = React.useState(false)
-    const [fetchItem, setFetchItem] = React.useState(false)
+    const [dialogOpen, setDialogOpen] = React.useState(false);
+    const [fetchItem, setFetchItem] = React.useState(false);
 
     // Table
-    const textRef = useRef<TextFieldProps>()
-    const [romList, setRomList] = useState<romInfo[]>([])
-    const [searchedRomList, setSearchedRomList] = useState<romInfo[]>([])
-    const [page, setPage] = useState(0)
-    const [rowsPerPage, setRowsPerPage] = useState(10)
-    const [pageViewString, setPageViewString] = useState("Page View")
+    const textRef = useRef<TextFieldProps>();
+    const [romList, setRomList] = useState<romInfo[]>([]);
+    const [searchedRomList, setSearchedRomList] = useState<romInfo[]>([]);
+    const [page, setPage] = useState(0);
+    const [rowsPerPage, setRowsPerPage] = useState(10);
+    const [pageViewString, setPageViewString] = useState("Page View");
 
     const handleChangePage = (event: unknown, newPage: number) => {
-        setPage(newPage)
+        setPage(newPage);
     }
 
     const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setRowsPerPage(+event.target.value)
-        setPage(0)
+        setRowsPerPage(+event.target.value);
+        setPage(0);
     }
 
     const handleSearchBarChange = (keyword: React.ChangeEvent<any>) => {
+        setPage(0);
         const filteredRows = romList.filter((row) => {
-            return row.title?.toLowerCase().includes(keyword.target.value.toLowerCase())
+            return row.title?.toLowerCase().includes(keyword.target.value.toLowerCase());
         })
-        setSearchedRomList(filteredRows)
+        setSearchedRomList(filteredRows);
     }
 
     useEffect(() => {
         if (greaterThanMid) {
-            setGameScreenWidth(800)
-            setGameScreenHeight(600)
-            setPageViewString("Page View")
+            setGameScreenWidth(800);
+            setGameScreenHeight(600);
+            setPageViewString("Page View");
         } else if (smallToMid) {
-            setPageViewString("Page View")
+            setPageViewString("Page View");
         } else if (lessThanSmall) {
-            setGameScreenWidth(320)
-            setGameScreenHeight(240)
-            setPageViewString("")
+            setGameScreenWidth(320);
+            setGameScreenHeight(240);
+            setPageViewString("");
         }
-    }, [greaterThanMid, smallToMid, setGameScreenWidth, window.innerHeight])
+    }, [greaterThanMid, smallToMid, setGameScreenWidth, window.innerHeight]);
 
     const fetchGameList = () => {
-        const formData = new FormData()
-        formData.append("system", props.system)
-        setPage(0)
+        const formData = new FormData();
+        formData.append("system", props.system);
+        setPage(0);
 
         try {
-            textRef.current!!.value = ""
+            textRef.current!!.value = "";
         } catch (e) {}
 
         axios
             .post("/api/v1/romList/getRomList", formData)
             .then(function (response) {
-                setRomList(response.data.data)
-                setSearchedRomList(response.data.data)
+                setRomList(response.data.data);
+                setSearchedRomList(response.data.data);
             })
-            .catch((error) => console.log(error))
+            .catch((error) => console.log(error));
     }
 
     useEffect(() => {
-        fetchGameList()
-    }, [props.system, fetchItem])
+        fetchGameList();
+    }, [props.system, fetchItem]);
 
     return (
         <Box sx={{ display: "flex" }}>
@@ -155,7 +156,7 @@ export default function GameList(props: any) {
                                 color="inherit"
                                 size="small"
                                 onClick={() => {
-                                    setDialogOpen(true)
+                                    setDialogOpen(true);
                                 }}
                                 startIcon={<MuiIcon icon="Refresh" />}
                                 variant="contained"
@@ -175,7 +176,7 @@ export default function GameList(props: any) {
                                     variant="outlined"
                                     placeholder="Search for games here"
                                     onChange={(keyword) => {
-                                        handleSearchBarChange(keyword)
+                                        handleSearchBarChange(keyword);
                                     }}
                                     InputProps={{
                                         startAdornment: (
@@ -215,9 +216,9 @@ export default function GameList(props: any) {
                                                             tabIndex={-1}
                                                             key={row.id}
                                                             onClick={() => {
-                                                                setRomPath(row.filePath!!)
-                                                                setRomTitle(row.title!!)
-                                                                setOpenGameScreen(true)
+                                                                setRomPath(row.filePath!!);
+                                                                setRomTitle(row.title!!);
+                                                                setOpenGameScreen(true);
                                                             }}
                                                         >
                                                             <TableCell

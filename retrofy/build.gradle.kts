@@ -73,6 +73,13 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-jooq:3.2.3")
     implementation("org.jooq:jooq-codegen:3.18.11")
     implementation("org.jooq:jooq-meta:3.18.11")
+
+    // Log
+    implementation("org.springframework.boot:spring-boot-starter-log4j2")
+
+    configurations.all {
+        exclude(group = "org.springframework.boot", module = "spring-boot-starter-logging")
+    }
 }
 
 dependencies {
@@ -97,7 +104,7 @@ jooq {
                 logging = org.jooq.meta.jaxb.Logging.INFO
                 jdbc.apply {
                     driver = "com.mysql.cj.jdbc.Driver"
-                    url = "jdbc:mysql://localhost:3306/retrofy?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8" // # For develop
+                    url = "jdbc:mysql://localhost:3306/retrofy?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8"
                     user = "root"
                     password = System.getenv("MYSQL_PASSWORD")
                 }

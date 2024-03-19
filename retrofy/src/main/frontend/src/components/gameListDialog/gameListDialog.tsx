@@ -10,43 +10,45 @@ import axios from "axios"
 import { Alert, LinearProgress, Snackbar, Typography } from "@mui/material"
 
 export default function GameListDialog(props: any) {
-    const [progress, setProgess] = useState(false)
-    const [snackbarOpen, setSnackbarOpen] = useState(false)
-    const [isError, setIsError] = useState(false)
+    const [progress, setProgess] = useState(false);
+    const [snackbarOpen, setSnackbarOpen] = useState(false);
+    const [isError, setIsError] = useState(false);
 
     const handleDialogResult = (result: Boolean) => {
         if (result) {
-            setProgess(true)
-            updateGameLists()
+            setProgess(true);
+            updateGameLists();
         } else {
-            handleClose()
+            handleClose();
         }
     }
 
     const handleClose = () => {
-        props.setDialogOpen(false)
+        props.setDialogOpen(false);
     }
 
     const handleSnackbarClose = () => {
-        setSnackbarOpen(false)
+        setSnackbarOpen(false);
     }
 
     const updateGameLists = () => {
-        const formData = new FormData()
-        formData.append("system", props.system)
+        const formData = new FormData();
+        formData.append("system", props.system);
 
         axios
             .post("/api/v1/romList/update", formData)
             .then(function (response) {
-                setSnackbarOpen(true)
-                props.setDialogOpen(false)
-                setProgess(false)
-                props.setFetchItem(!props.fetchItem)
+                setSnackbarOpen(true);
+                props.setDialogOpen(false);
+                setProgess(false);
+                props.setFetchItem(!props.fetchItem);
             })
             .catch((error) => {
-                console.log(error)
-                setIsError(true)
-                setProgess(false)
+                console.log(error);
+                setIsError(true);
+                setSnackbarOpen(true);
+                setProgess(false);
+                props.setDialogOpen(false);
             })
     }
 
@@ -68,14 +70,14 @@ export default function GameListDialog(props: any) {
                     <DialogActions>
                         <Button
                             onClick={() => {
-                                handleDialogResult(false)
+                                handleDialogResult(false);
                             }}
                         >
                             No
                         </Button>
                         <Button
                             onClick={() => {
-                                handleDialogResult(true)
+                                handleDialogResult(true);
                             }}
                             autoFocus
                         >

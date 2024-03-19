@@ -7,6 +7,6 @@ export type IconProps = {
 }
 
 export const MuiIcon: FC<IconProps> = ({ icon }) => {
-    const Icon = Icons[icon]
+    const Icon = Icons[icon];
     return <Icon />
 }

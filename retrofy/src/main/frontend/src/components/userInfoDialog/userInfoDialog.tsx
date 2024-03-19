@@ -12,73 +12,73 @@ import { Alert, Snackbar } from "@mui/material"
 import { useNavigate } from "react-router-dom"
 
 export default function UserInfoDialog(props: any) {
-    const navigator = useNavigate()
-    const [cookies, setCookie, removeCookie] = useCookies(["userInfo"])
-    const [isError, setIsError] = useState(false)
-    const [snackbarOpen, setSnackbarOpen] = useState(false)
+    const navigator = useNavigate();
+    const [cookies, setCookie, removeCookie] = useCookies(["userInfo"]);
+    const [isError, setIsError] = useState(false);
+    const [snackbarOpen, setSnackbarOpen] = useState(false);
 
     const handleDialogResult = (result: Boolean) => {
         if (result) {
             if (props.isUpdateUserId) {
-                updateUserId()
+                updateUserId();
             } else {
-                updateUserPw()
+                updateUserPw();
             }
         } else {
-            handleClose()
+            handleClose();
         }
     }
 
     const handleClose = () => {
-        props.setDialogOpen(false)
+        props.setDialogOpen(false);
     }
 
     const handleSnackbarClose = () => {
-        setSnackbarOpen(false)
+        setSnackbarOpen(false);
     }
 
     const updateUserId = () => {
-        const formData = new FormData()
-        formData.append("userId", atob(cookies.userInfo))
-        formData.append("newUserId", props.idRef.current.value)
+        const formData = new FormData();
+        formData.append("userId", atob(cookies.userInfo));
+        formData.append("newUserId", props.idRef.current.value);
 
         axios
             .post("/api/v1/auth/updateUserId", formData)
             .then(function (response) {
-                setIsError(false)
-                setSnackbarOpen(true)
+                setIsError(false);
+                setSnackbarOpen(true);
 
                 axios.get("/api/v1/auth/logout").then((response) => {
                     navigator("/login")
-                })
+                });
             })
             .catch((error) => {
-                setIsError(true)
-                setSnackbarOpen(true)
-                props.setDialogOpen(false)
-                console.log(error)
+                setIsError(true);
+                setSnackbarOpen(true);
+                props.setDialogOpen(false);
+                console.log(error);
             })
     }
 
     const updateUserPw = () => {
-        const formData = new FormData()
-        formData.append("userId", atob(cookies.userInfo))
-        formData.append("pw", props.pwRef.current.value)
+        const formData = new FormData();
+        formData.append("userId", atob(cookies.userInfo));
+        formData.append("pw", props.pwRef.current.value);
         axios
             .post("/api/v1/auth/updateUserPw", formData)
             .then(function (response) {
-                setIsError(false)
-                setSnackbarOpen(true)
+                setIsError(false);
+                setSnackbarOpen(true);
 
                 axios.get("/api/v1/auth/logout").then((response) => {
-                    navigator("/login")
+                    navigator("/login");
                 })
             })
             .catch((error) => {
-                setIsError(true)
-                setSnackbarOpen(true)
-                props.setDialogOpen(false)
-                console.log(error)
+                setIsError(true);
+                setSnackbarOpen(true);
+                props.setDialogOpen(false);
+                console.log(error);
             })
     }
 
@@ -94,14 +94,14 @@ export default function UserInfoDialog(props: any) {
                 <DialogActions>
                     <Button
                         onClick={() => {
-                            handleDialogResult(false)
+                            handleDialogResult(false);
                         }}
                     >
                         No
                     </Button>
                     <Button
                         onClick={() => {
-                            handleDialogResult(true)
+                            handleDialogResult(true);
                         }}
                         autoFocus
                     >
