@@ -20,10 +20,9 @@ I will be supporting all systems supported by EmulatorJS in the near future.
  - SNES
  - N64
  - PSX
- - SEGA Game Gear
- - SEGA Master System
- - SEGA Mega Drive
-
+ - SEGAGG
+ - SEGAMS
+ - SEGAMD
 
 ## How to run
 You can use docker-compose to paste the yaml below, change the password for the database, and run it.
@@ -129,7 +128,7 @@ The following is just an example, all file extensions supported by EmulatorJS ar
 ```
 
 ## RoadMap
-1. The goal is to be able to run any system supported by Emulator JS.
+1. The goal is to be able to run any system supported by EmulatorJS.
 2. Overall UI design improvements
 3. Multi Language support
 
