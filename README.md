@@ -1,5 +1,5 @@
 
-## Retrofy - Simple web self-hosted emulator frontend
+## Retrofy - Simple web-based self-hosted emulator frontend
 
 Yes. I really wanted to have a simple, easy-to-use self-hosted retro emulator, and no matter how much I looked, I couldn't find a simple web-based emulator solution that I wanted, so I start to create this project.
 
