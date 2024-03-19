@@ -13,7 +13,7 @@ export default function DrawerListItems(props: any) {
             link: "/",
             icon: "Star",
             show: false,
-        }
+        },
     ]
 
     const otherListItems: systemListItems[] = [
