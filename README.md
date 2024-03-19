@@ -63,12 +63,22 @@ networks:
 ```
 
 ## When run first time
+Of course, retrofy supports login authentication for privacy.
 The initial ID is `admin` and the password is `p@ssw0rd`.<br/>
 Don't worry. You can change your ID and password on the settings screen after logging in.
 ![image](https://github.com/0xCD0/retrofy/assets/4960838/4475a542-96b5-4315-946c-e71621e0a98c)
 
 Update game database and update game list of your own games on Settings menu.
 ![image](https://github.com/0xCD0/retrofy/assets/4960838/68451ea6-4b00-4fe2-ab08-69398c9a689a)
+
+
+## Launch the game
+You can easily find games by entering each game's menu and clicking on the list of games or by searching. Of course, you can also update it by hitting the 'Refresh Game List' button when you add a new game.
+![image](https://github.com/0xCD0/retrofy/assets/4960838/28e6442f-54e3-4076-8c67-d1e94da10f8d)
+
+When you run the game, you'll see the game screen in EmulatorJS, with all of the features that EmulatorJS supports.
+![image](https://github.com/0xCD0/retrofy/assets/4960838/0e866108-cf62-410d-aae9-75c89bbe6e7a)
+
 
 
 ## Structure of the Game Directory
