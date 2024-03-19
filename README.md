@@ -5,6 +5,8 @@ Yes. I really wanted to have a simple, easy-to-use self-hosted retro emulator, a
 
 This project is powered by [emulatorJS](https://emulatorjs.org/) project. You can use all the same features you used in [emulatorJS](https://emulatorjs.org/).
 
+And this project was created solely as a hobby.
+
 ## How to run
 You can use docker-compose to paste the yaml below, change the password for the database, and run it.
 
