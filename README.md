@@ -8,6 +8,8 @@ This project is powered by [emulatorJS](https://emulatorjs.org/) project. You ca
 ## How to run
 You can use docker-compose to paste the yaml below, change the password for the database, and run it.
 
+`Initialization takes time when it is an initial run without mysql data. If docker-compose does not run the server, it is waiting for the health check of mysql, so please wait until mysql is finished initializing.`
+
 ```yaml
 version: '3.8'
 
@@ -59,11 +61,11 @@ networks:
 ```
 
 ## When run first time
-・The initial ID is `admin` and the password is `p@ssw0rd`.<br/>
+The initial ID is `admin` and the password is `p@ssw0rd`.<br/>
 Don't worry. You can change your ID and password on the settings screen after logging in.
 ![image](https://github.com/0xCD0/retrofy/assets/4960838/4475a542-96b5-4315-946c-e71621e0a98c)
 
-・Update game database and update game list of your own games on Settings menu.
+Update game database and update game list of your own games on Settings menu.
 ![image](https://github.com/0xCD0/retrofy/assets/4960838/68451ea6-4b00-4fe2-ab08-69398c9a689a)
 
 
@@ -107,5 +109,6 @@ The following is just an example, all file extensions supported by EmulatorJS ar
  - SEGA MD
 
 ## RoadMap
-The goal is to be able to run any system supported by Emulator JS.
-
+1. The goal is to be able to run any system supported by Emulator JS.
+2. Overall UI design improvements
+3. 
