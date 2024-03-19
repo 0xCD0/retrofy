@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { useState } from "react"
 import Button from "@mui/material/Button"
 import Dialog from "@mui/material/Dialog"
@@ -17,7 +17,6 @@ export default function UpdateAllGameListDialog(props: any) {
     const [nowSystem, setNowSystem] = useState("")
 
     const handleDialogResult = (result: Boolean) => {
-        console.log(result)
         if (result) {
             setProgess(true)
             updateGameLists()
@@ -36,33 +35,42 @@ export default function UpdateAllGameListDialog(props: any) {
 
     const updateGameLists = async () => {
         try {
-            // Todo. can't wait result..
-            var result = await systemList.systems.map(async (system) => {
+
+            await Promise.all(
+            systemList.systems.map(async (system) => {
                 if (system.show) {
-                    setNowSystem(system.fullSystemName!!)
                     const formData = new FormData()
                     formData.append("system", system.systemName!!)
 
-                    var result = await axios
+                    await axios
                         .post("/api/v1/romList/update", formData)
                         .then(function (response) {
+                            setNowSystem(system.fullSystemName!!)
+                            console.log(system.fullSystemName!!)
                             setIsError(false)
                             console.log(`Refresh complete : ${system.systemName}`)
                         })
                         .catch((error) => {
-                            setIsError(true)
                             throw error
                         })
-                    console.log(result);
+                    
                 }
-            })
+            }))
+            
+            
+        } catch (e) {
+            setIsError(true)
+        }
+        finally{
             setSnackbarOpen(true)
             props.setDialogOpen(false)
             setProgess(false)
-        } catch (e) {
-            setProgess(false)
+            setNowSystem("")
         }
     }
+
+    useEffect(()=>{
+    },[nowSystem])
 
     return (
         <React.Fragment>
@@ -106,7 +114,7 @@ export default function UpdateAllGameListDialog(props: any) {
                                 We're currently updating the list of games. This may take a long time depending on how many games are preserved.
                             </Typography>
 
-                            <Typography mb={3}>Current system : {nowSystem}</Typography>
+                            <Typography mb={3}>Completed scan : {nowSystem}</Typography>
                             <LinearProgress />
                         </DialogContentText>
                     </DialogContent>
