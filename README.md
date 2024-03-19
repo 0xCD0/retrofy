@@ -60,6 +60,7 @@ services:
   db:
     container_name: retrofy-mysql
     image: mysql:8.1
+    command: --max_allowed_packet=1073741824
     volumes:
       # Enter the path where the database will be stored
       - {Set your database directory}:/var/lib/mysql
