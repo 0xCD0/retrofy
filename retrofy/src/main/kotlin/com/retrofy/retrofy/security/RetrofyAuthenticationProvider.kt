@@ -21,6 +21,8 @@ class RetrofyAuthenticationProvider : AuthenticationProvider {
     @Autowired
     lateinit var userInfoService: UserInfoService
 
+    val bCryptPasswordEncoder = BCryptPasswordEncoder()
+
     override fun authenticate(authentication: Authentication?): Authentication {
 
         val authToken = authentication as UsernamePasswordAuthenticationToken
@@ -28,7 +30,7 @@ class RetrofyAuthenticationProvider : AuthenticationProvider {
         val userModel = userInfoService.getUserInfo(authToken.principal.toString())
             ?: throw BadCredentialsException("Login failed")
 
-        if (bCryptPasswordEncoder().matches(authToken.credentials.toString(), userModel.password)) {
+        if (bCryptPasswordEncoder.matches(authToken.credentials.toString(), userModel.password)) {
             val userDetail =
                 UserDetailModel(authToken.principal.toString(), authToken.credentials.toString(), userModel.userRole)
             return UsernamePasswordAuthenticationToken(userDetail, userDetail.password, userDetail.authorities)
@@ -41,9 +43,9 @@ class RetrofyAuthenticationProvider : AuthenticationProvider {
         return true
     }
 
-    @Bean
-    fun bCryptPasswordEncoder(): BCryptPasswordEncoder {
-        return BCryptPasswordEncoder()
-    }
+//    @Bean
+//    fun bCryptPasswordEncoder(): BCryptPasswordEncoder {
+//        return BCryptPasswordEncoder()
+//    }
 
 }

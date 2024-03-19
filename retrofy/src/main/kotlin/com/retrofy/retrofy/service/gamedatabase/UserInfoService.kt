@@ -4,10 +4,13 @@ import com.retrofy.retrofy.jooq.tables.references.USER
 import com.retrofy.retrofy.model.database.UserModel
 import org.jooq.DSLContext
 import org.jooq.impl.DSL
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Repository
 
 @Repository
 class UserInfoService(val dsl: DSLContext) {
+
+    val bCryptPasswordEncoder = BCryptPasswordEncoder()
 
     fun getUserInfo(userId: String): UserModel? {
         val result = dsl.select(DSL.asterisk())
@@ -27,7 +30,7 @@ class UserInfoService(val dsl: DSLContext) {
         }
     }
 
-    fun updateUserInfo(userId: String, newUserId: String): Boolean {
+    fun updateUserId(userId: String, newUserId: String): Boolean {
         val result = dsl.update(USER)
             .set(USER.USER_ID, newUserId)
             .where(USER.USER_ID.eq(userId))
@@ -38,7 +41,7 @@ class UserInfoService(val dsl: DSLContext) {
 
     fun updateUserPassword(userId: String, userPw: String): Boolean{
         val result = dsl.update(USER)
-            .set(USER.PASSWORD, userPw)
+            .set(USER.PASSWORD, bCryptPasswordEncoder.encode(userPw))
             .where(USER.USER_ID.eq(userId))
             .execute()
 

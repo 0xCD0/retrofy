@@ -31,25 +31,27 @@ class AuthController {
 
     @PostMapping("/api/v1/auth/updateUserId")
     fun updateUserId(userId: String, newUserId: String): ResponseModel {
-        val result = userInfoService.updateUserInfo(userId, newUserId)
+        val result = userInfoService.updateUserId(userId, newUserId)
 
         return if (result) {
             ResponseModel()
         } else {
             ResponseModel(
+                message = "User not found.",
                 statusCode = HttpStatus.BAD_REQUEST
             )
         }
     }
 
     @PostMapping("/api/v1/auth/updateUserPw")
-    fun updateUserPassword(userId: String, newUserId: String): ResponseModel {
-        val result = userInfoService.updateUserPassword(userId, newUserId)
+    fun updateUserPassword(userId: String, pw: String): ResponseModel {
+        val result = userInfoService.updateUserPassword(userId, pw)
 
         return if (result) {
             ResponseModel()
         } else {
             ResponseModel(
+                message = "Failed update user password.",
                 statusCode = HttpStatus.BAD_REQUEST
             )
         }

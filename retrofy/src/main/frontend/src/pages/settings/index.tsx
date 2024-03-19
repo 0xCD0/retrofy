@@ -35,8 +35,9 @@ export default function Settings(props: any) {
     const [showPassword, setShowPassword] = React.useState(false)
     const handleClickShowPassword = () => setShowPassword((show) => !show)
 
-    // Dialog
-    const [dialogOpen, setDialogOpen] = React.useState(false)
+    // GameDatabaseDialog
+    const [gameDatabaseDialogOpen, setGameDatabaseDialogOpen] = React.useState(false)
+
 
     const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
         setTabValue(newValue)
@@ -47,9 +48,7 @@ export default function Settings(props: any) {
     }
 
     const updateGameDatabase = () => {
-        // atob(cookies.userInfo)
-
-
+        setGameDatabaseDialogOpen(true);
     }
 
     const updateAllGameLists = () => {
@@ -137,8 +136,7 @@ export default function Settings(props: any) {
                                                             [LINK]
                                                         </Link>
                                                         <br />
-                                                        Anyone is welcome to comment with suggested changes to the Thumbnail link entry using Google
-                                                        Sheets 😄
+                                                        Anyone is welcome to comment with suggested changes to the thumbnail link entry using Google spread sheets 😄
                                                     </Typography>
                                                 </CardContent>
                                                 <CardActions>
@@ -224,6 +222,7 @@ export default function Settings(props: any) {
                                                                 id="text_userPw"
                                                                 label="Enter the user ID you want to replace"
                                                                 type={showPassword ? "text" : "password"}
+                                                                onClick={updateUserPassword}
                                                                 InputProps={{
                                                                     startAdornment: (
                                                                         <InputAdornment position="start">
@@ -234,8 +233,7 @@ export default function Settings(props: any) {
                                                                     endAdornment: (
                                                                         <InputAdornment position="end">
                                                                             <IconButton
-                                                                                aria-label="toggle password visibility"
-                                                                                onClick={updateUserPassword}
+                                                                                onClick={handleClickShowPassword}
                                                                             >
                                                                                 {showPassword ? <VisibilityOff /> : <Visibility />}
                                                                             </IconButton>
@@ -267,8 +265,8 @@ export default function Settings(props: any) {
             </Box>
 
             <GameDatabaseDialog
-                dialogOpen={dialogOpen}
-                setDialogOpen={setDialogOpen}
+                dialogOpen={gameDatabaseDialogOpen}
+                setDialogOpen={setGameDatabaseDialogOpen}
                 system={props.system}
             />
         </Box>

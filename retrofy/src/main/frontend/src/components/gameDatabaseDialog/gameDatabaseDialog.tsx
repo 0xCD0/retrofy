@@ -32,16 +32,12 @@ export default function GameDatabaseDialog(props: any) {
     }
 
     const updateGameLists = () => {
-        const formData = new FormData()
-        formData.append("system", props.system)
-
         axios
-            .post("/api/v1/romList/update", formData)
+            .get("/api/v1/gameDatabase/updateDatabase")
             .then(function (response) {
                 setSnackbarOpen(true)
                 props.setDialogOpen(false)
                 setProgess(false)
-                props.setFetchItem(!props.fetchItem)
             })
             .catch((error) => {
                 console.log(error)
@@ -61,7 +57,7 @@ export default function GameDatabaseDialog(props: any) {
                     <DialogTitle id="alert-dialog-title">Refresh Game list</DialogTitle>
                     <DialogContent>
                         <DialogContentText id="alert-dialog-description">
-                            {`This task fetches information from [LINK] to obtain information about each game and its thumbnail. Depending on the server's specifications, this task may take a long time. Do you want to continue?`}
+                            {`This task fetches information from Game Database spreadsheet to obtain information about each game and its thumbnail. Depending on the server's specifications, this task may take a long time. Do you want to continue?`}
                         </DialogContentText>
                     </DialogContent>
                     <DialogActions>
@@ -87,9 +83,7 @@ export default function GameDatabaseDialog(props: any) {
                     <DialogTitle id="alert-dialog-title">Refreshing game lists...</DialogTitle>
                     <DialogContent>
                         <DialogContentText id="alert-dialog-description">
-                            <Typography mb={3}>
-                                We're currently updating the list of games. This may take a long time depending on how many games are preserved.
-                            </Typography>
+                            <Typography mb={3}>We're currently updating Game Databases. This may take a long time..</Typography>
                             <LinearProgress />
                         </DialogContentText>
                     </DialogContent>
@@ -103,7 +97,7 @@ export default function GameDatabaseDialog(props: any) {
                 onClose={handleSnackbarClose}
             >
                 <Alert onClose={handleSnackbarClose} severity="success" variant="filled" sx={{ width: "100%", color: "#FFFFFF" }}>
-                    Successfully updated the game list !
+                    Successfully updated the game databases !
                 </Alert>
             </Snackbar>
         </React.Fragment>
