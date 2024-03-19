@@ -65,7 +65,7 @@ export default function SignIn() {
                 }}
             >
                 <Typography fontSize={55}>Retrofy</Typography>
-                <Typography fontSize={20}>Self-Hosted Web Emulator Frontend</Typography>
+                <Typography fontSize={20}>Self-Hosted Web-Based Emulator Frontend</Typography>
                 {isError && (
                     <Box mt={2}>
                         <Alert severity="error">
