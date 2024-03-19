@@ -125,3 +125,4 @@ I will be supporting all systems supported by EmulatorJS in the near future.
 ## RoadMap
 1. The goal is to be able to run any system supported by Emulator JS.
 2. Overall UI design improvements
+3. Multi Language support
