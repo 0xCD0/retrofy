@@ -35,33 +35,29 @@ export default function UpdateAllGameListDialog(props: any) {
 
     const updateGameLists = async () => {
         try {
-
             await Promise.all(
-            systemList.systems.map(async (system) => {
-                if (system.show) {
-                    const formData = new FormData()
-                    formData.append("system", system.systemName!!)
+                systemList.systems.map(async (system) => {
+                    if (system.show) {
+                        const formData = new FormData()
+                        formData.append("system", system.systemName!!)
 
-                    await axios
-                        .post("/api/v1/romList/update", formData)
-                        .then(function (response) {
-                            setNowSystem(system.fullSystemName!!)
-                            console.log(system.fullSystemName!!)
-                            setIsError(false)
-                            console.log(`Refresh complete : ${system.systemName}`)
-                        })
-                        .catch((error) => {
-                            throw error
-                        })
-                    
-                }
-            }))
-            
-            
+                        await axios
+                            .post("/api/v1/romList/update", formData)
+                            .then(function (response) {
+                                setNowSystem(system.fullSystemName!!)
+                                console.log(system.fullSystemName!!)
+                                setIsError(false)
+                                console.log(`Refresh complete : ${system.systemName}`)
+                            })
+                            .catch((error) => {
+                                throw error
+                            })
+                    }
+                })
+            )
         } catch (e) {
             setIsError(true)
-        }
-        finally{
+        } finally {
             setSnackbarOpen(true)
             props.setDialogOpen(false)
             setProgess(false)
@@ -69,8 +65,7 @@ export default function UpdateAllGameListDialog(props: any) {
         }
     }
 
-    useEffect(()=>{
-    },[nowSystem])
+    useEffect(() => {}, [nowSystem])
 
     return (
         <React.Fragment>

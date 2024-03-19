@@ -7,17 +7,23 @@ import DialogContent from "@mui/material/DialogContent"
 import DialogContentText from "@mui/material/DialogContentText"
 import DialogTitle from "@mui/material/DialogTitle"
 import axios from "axios"
-import { Alert, LinearProgress, Snackbar, Typography } from "@mui/material"
+import { useCookies } from "react-cookie"
+import { Alert, Snackbar } from "@mui/material"
+import { useNavigate } from "react-router-dom"
 
 export default function UserInfoDialog(props: any) {
-    const [progress, setProgess] = useState(false)
+    const navigator = useNavigate()
+    const [cookies, setCookie, removeCookie] = useCookies(["userInfo"])
+    const [isError, setIsError] = useState(false)
     const [snackbarOpen, setSnackbarOpen] = useState(false)
 
     const handleDialogResult = (result: Boolean) => {
-        console.log(result)
         if (result) {
-            setProgess(true)
-            updateGameLists()
+            if (props.isUpdateUserId) {
+                updateUserId()
+            } else {
+                updateUserPw()
+            }
         } else {
             handleClose()
         }
@@ -31,79 +37,99 @@ export default function UserInfoDialog(props: any) {
         setSnackbarOpen(false)
     }
 
-    const updateGameLists = () => {
+    const updateUserId = () => {
         const formData = new FormData()
-        formData.append("system", props.system)
+        formData.append("userId", atob(cookies.userInfo))
+        formData.append("newUserId", props.idRef.current.value)
 
         axios
-            .post("/api/v1/romList/update", formData)
+            .post("/api/v1/auth/updateUserId", formData)
             .then(function (response) {
+                setIsError(false)
                 setSnackbarOpen(true)
-                props.setDialogOpen(false)
-                setProgess(false)
-                props.setFetchItem(!props.fetchItem)
+
+                axios.get("/api/v1/auth/logout").then((response) => {
+                    console.log(response)
+                    navigator("/login")
+                })
             })
             .catch((error) => {
+                setIsError(true)
+                setSnackbarOpen(true)
+                props.setDialogOpen(false)
                 console.log(error)
-                setProgess(false)
+            })
+    }
+
+    const updateUserPw = () => {
+        const formData = new FormData()
+        formData.append("userId", atob(cookies.userInfo))
+        formData.append("pw", props.pwRef.current.value)
+        axios
+            .post("/api/v1/auth/updateUserPw", formData)
+            .then(function (response) {
+                setIsError(false)
+                setSnackbarOpen(true)
+
+                axios.get("/api/v1/auth/logout").then((response) => {
+                    console.log(response)
+                    navigator("/login")
+                })
+            })
+            .catch((error) => {
+                setIsError(true)
+                setSnackbarOpen(true)
+                props.setDialogOpen(false)
+                console.log(error)
             })
     }
 
     return (
         <React.Fragment>
-            {!progress ? (
-                <Dialog
-                    open={props.dialogOpen}
-                    onClose={handleClose}
-                    aria-labelledby="alert-dialog-title"
-                    aria-describedby="alert-dialog-description"
-                >
-                    <DialogTitle id="alert-dialog-title">Refresh Game list</DialogTitle>
-                    <DialogContent>
-                        <DialogContentText id="alert-dialog-description">
-                            {`This action updates the list of all games currently in the game directory. Any games on the ${props.system} system that were previously listed will be reset. Depending on your server's specifications and the number of games, this may take a long time. Are you sure you want to continue?`}
-                        </DialogContentText>
-                    </DialogContent>
-                    <DialogActions>
-                        <Button
-                            onClick={() => {
-                                handleDialogResult(false)
-                            }}
-                        >
-                            No
-                        </Button>
-                        <Button
-                            onClick={() => {
-                                handleDialogResult(true)
-                            }}
-                            autoFocus
-                        >
-                            Yes
-                        </Button>
-                    </DialogActions>
-                </Dialog>
-            ) : (
-                <Dialog open={props.dialogOpen}>
-                    <DialogTitle id="alert-dialog-title">Refreshing game lists...</DialogTitle>
-                    <DialogContent>
-                        <DialogContentText id="alert-dialog-description">
-                            <Typography mb={3}>
-                                We're currently updating the list of games. This may take a long time depending on how many games are preserved.
-                            </Typography>
-                            <LinearProgress />
-                        </DialogContentText>
-                    </DialogContent>
-                </Dialog>
-            )}
-
+            <Dialog open={props.dialogOpen} onClose={handleClose} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
+                <DialogTitle id="alert-dialog-title">{props.isUpdateUserId ? "Change user ID" : "Change user Password"}</DialogTitle>
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                        Re-login is required after changing ID or Password. Do you want to continue?
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button
+                        onClick={() => {
+                            handleDialogResult(false)
+                        }}
+                    >
+                        No
+                    </Button>
+                    <Button
+                        onClick={() => {
+                            handleDialogResult(true)
+                        }}
+                        autoFocus
+                    >
+                        Yes
+                    </Button>
+                </DialogActions>
+            </Dialog>
             <Snackbar
                 open={snackbarOpen}
                 autoHideDuration={6000}
                 anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
                 onClose={handleSnackbarClose}
             >
-                <Alert onClose={handleSnackbarClose} severity="success" variant="filled" sx={{ width: "100%", color: "#FFFFFF" }}>
-                    Successfully updated the game list !
+                <Alert
+                    onClose={handleSnackbarClose}
+                    severity={isError ? "error" : "success"}
+                    variant="filled"
+                    sx={{ width: "100%", color: "#FFFFFF" }}
+                >
+                    {isError
+                        ? props.isUpdateUserId
+                            ? "ID change was successful."
+                            : "Password change was successful."
+                        : props.isUpdateUserId
+                        ? "ID change was failed."
+                        : "Password change was failed."}
                 </Alert>
             </Snackbar>
         </React.Fragment>

@@ -1,32 +1,17 @@
 import * as React from "react"
 import { useEffect, useRef, useState } from "react"
-import {
-    Button,
-    Card,
-    CardActions,
-    CardContent,
-    IconButton,
-    InputAdornment,
-    Link,
-    Paper,
-    Tab,
-    Tabs,
-    TextField,
-    Typography,
-} from "@mui/material"
+import { Button, Card, CardActions, CardContent, IconButton, InputAdornment, Link, Paper, Tab, Tabs, TextField, Typography } from "@mui/material"
 import Box from "@mui/material/Box"
 import Toolbar from "@mui/material/Toolbar"
 import GameDatabaseDialog from "components/gameDatabaseDialog/gameDatabaseDialog"
 import RetrofyDrawer from "components/RetrofyDrawer/retrofyDrawer"
 import RetrofyAppBar from "components/RetrofyAppBar/retrofyAppBar"
 import { AccountCircle, Key, Visibility, VisibilityOff } from "@mui/icons-material"
-import { useCookies } from "react-cookie"
+
 import UpdateAllGameListDialog from "components/updateAllGameListDialog/updateAllGameListDialog"
 import UserInfoDialog from "components/userInfoDialog/userInfoDialog"
 
 export default function Settings(props: any) {
-    const [cookies, setCookie, removeCookie] = useCookies(['userInfo']);
-    
     // Drawer
     const [mobileOpen, setMobileOpen] = useState(false)
     const [isClosing, setIsClosing] = useState(false)
@@ -38,34 +23,31 @@ export default function Settings(props: any) {
 
     // GameDatabaseDialog
     const [gameDatabaseDialogOpen, setGameDatabaseDialogOpen] = React.useState(false)
-    const [updateAllGameListDialogOpen, setUpdateAllGameListDialogOpen] = React.useState(false)
-    const [userInfoDialogOpen, setUserInfoDialogOpen] = React.useState(false)
 
+    // UpdateAllGameListDialog
+    const [updateAllGameListDialogOpen, setUpdateAllGameListDialogOpen] = React.useState(false)
+
+    // userInfoDialog
+    const [userInfoDialogOpen, setUserInfoDialogOpen] = React.useState(false)
+    const [isUpdateUserId, setIsUpdateUserId] = React.useState(false)
+    const idTextFiled = useRef()
+    const pwTextFiled = useRef()
 
     const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
         setTabValue(newValue)
     }
 
-    const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
-        event.preventDefault()
-    }
-
     const updateGameDatabase = () => {
-        setGameDatabaseDialogOpen(true);
+        setGameDatabaseDialogOpen(true)
     }
 
     const updateAllGameLists = () => {
-        setUpdateAllGameListDialogOpen(true);
+        setUpdateAllGameListDialogOpen(true)
     }
 
-    const updateUserId = () => {
-        console.log(cookies.userInfo);
+    const updateUserInfo = () => {
+        setUserInfoDialogOpen(true)
     }
-
-    const updateUserPassword = () => {
-        console.log("test");
-    }
-    
 
     useEffect(() => {}, [props.system])
 
@@ -139,11 +121,14 @@ export default function Settings(props: any) {
                                                             [LINK]
                                                         </Link>
                                                         <br />
-                                                        Anyone is welcome to comment with suggested changes to the thumbnail link entry using Google spread sheets 😄
+                                                        Anyone is welcome to comment with suggested changes to the thumbnail link entry using Google
+                                                        spread sheets 😄
                                                     </Typography>
                                                 </CardContent>
                                                 <CardActions>
-                                                    <Button variant="contained" onClick={updateGameDatabase}>Update Game database</Button>
+                                                    <Button variant="contained" onClick={updateGameDatabase}>
+                                                        Update Game database
+                                                    </Button>
                                                 </CardActions>
                                             </React.Fragment>
                                         </Box>
@@ -164,7 +149,9 @@ export default function Settings(props: any) {
                                                         </Typography>
                                                     </CardContent>
                                                     <CardActions>
-                                                        <Button variant="contained" onClick={updateAllGameLists}>Update game list for All systems</Button>
+                                                        <Button variant="contained" onClick={updateAllGameLists}>
+                                                            Update game list for All systems
+                                                        </Button>
                                                     </CardActions>
                                                 </React.Fragment>
                                             </Box>
@@ -179,13 +166,13 @@ export default function Settings(props: any) {
                                             <React.Fragment>
                                                 <CardContent>
                                                     <Typography variant="h5" component="div">
-                                                        Change user account name
+                                                        Change user ID
                                                     </Typography>
 
                                                     <Typography variant="body2">
                                                         <br />
                                                         <TextField
-                                                            id="text_userId"
+                                                            inputRef={idTextFiled}
                                                             label="Enter the user ID you want to replace"
                                                             InputProps={{
                                                                 startAdornment: (
@@ -205,7 +192,15 @@ export default function Settings(props: any) {
                                                     </Typography>
                                                 </CardContent>
                                                 <CardActions>
-                                                    <Button variant="contained" onClick={updateUserId}>Update username</Button>
+                                                    <Button
+                                                        variant="contained"
+                                                        onClick={() => {
+                                                            setIsUpdateUserId(true)
+                                                            updateUserInfo()
+                                                        }}
+                                                    >
+                                                        Update username
+                                                    </Button>
                                                 </CardActions>
                                             </React.Fragment>
                                         </Box>
@@ -216,16 +211,15 @@ export default function Settings(props: any) {
                                                 <React.Fragment>
                                                     <CardContent>
                                                         <Typography variant="h5" component="div">
-                                                            Change user password
+                                                            Change user Password
                                                         </Typography>
 
                                                         <Typography variant="body2">
                                                             <br />
                                                             <TextField
-                                                                id="text_userPw"
+                                                                inputRef={pwTextFiled}
                                                                 label="Enter the user ID you want to replace"
                                                                 type={showPassword ? "text" : "password"}
-                                                                onClick={updateUserPassword}
                                                                 InputProps={{
                                                                     startAdornment: (
                                                                         <InputAdornment position="start">
@@ -235,9 +229,7 @@ export default function Settings(props: any) {
 
                                                                     endAdornment: (
                                                                         <InputAdornment position="end">
-                                                                            <IconButton
-                                                                                onClick={handleClickShowPassword}
-                                                                            >
+                                                                            <IconButton onClick={handleClickShowPassword}>
                                                                                 {showPassword ? <VisibilityOff /> : <Visibility />}
                                                                             </IconButton>
                                                                         </InputAdornment>
@@ -254,7 +246,15 @@ export default function Settings(props: any) {
                                                         </Typography>
                                                     </CardContent>
                                                     <CardActions>
-                                                        <Button variant="contained">Update Password</Button>
+                                                        <Button
+                                                            variant="contained"
+                                                            onClick={() => {
+                                                                setIsUpdateUserId(false)
+                                                                updateUserInfo()
+                                                            }}
+                                                        >
+                                                            Update Password
+                                                        </Button>
                                                     </CardActions>
                                                 </React.Fragment>
                                             </Box>
@@ -267,18 +267,15 @@ export default function Settings(props: any) {
                 </Paper>
             </Box>
 
-            <GameDatabaseDialog
-                dialogOpen={gameDatabaseDialogOpen}
-                setDialogOpen={setGameDatabaseDialogOpen}
+            <GameDatabaseDialog dialogOpen={gameDatabaseDialogOpen} setDialogOpen={setGameDatabaseDialogOpen} />
+            <UpdateAllGameListDialog dialogOpen={updateAllGameListDialogOpen} setDialogOpen={setUpdateAllGameListDialogOpen} />
+            <UserInfoDialog
+                dialogOpen={userInfoDialogOpen}
+                setDialogOpen={setUserInfoDialogOpen}
+                isUpdateUserId={isUpdateUserId}
+                idRef={idTextFiled}
+                pwRef={pwTextFiled}
             />
-            <UpdateAllGameListDialog
-                dialogOpen={updateAllGameListDialogOpen}
-                setDialogOpen={setUpdateAllGameListDialogOpen}
-            />
-            {/* <UserInfoDialog
-                dialogOpen={UserInfoDialog}
-                setDialogOpen={userInfoDialogOpen}
-            /> */}
         </Box>
     )
 }

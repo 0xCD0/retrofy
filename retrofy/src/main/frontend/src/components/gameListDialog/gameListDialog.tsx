@@ -12,6 +12,7 @@ import { Alert, LinearProgress, Snackbar, Typography } from "@mui/material"
 export default function GameListDialog(props: any) {
     const [progress, setProgess] = useState(false)
     const [snackbarOpen, setSnackbarOpen] = useState(false)
+    const [isError, setIsError] = useState(false)
 
     const handleDialogResult = (result: Boolean) => {
         console.log(result)
@@ -45,6 +46,7 @@ export default function GameListDialog(props: any) {
             })
             .catch((error) => {
                 console.log(error)
+                setIsError(true)
                 setProgess(false)
             })
     }
@@ -102,8 +104,13 @@ export default function GameListDialog(props: any) {
                 anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
                 onClose={handleSnackbarClose}
             >
-                <Alert onClose={handleSnackbarClose} severity="success" variant="filled" sx={{ width: "100%", color: "#FFFFFF" }}>
-                    Successfully updated the game list !
+                <Alert
+                    onClose={handleSnackbarClose}
+                    severity={isError ? "error" : "success"}
+                    variant="filled"
+                    sx={{ width: "100%", color: "#FFFFFF" }}
+                >
+                    {isError ? "Game list update failed" : "Successfully updated the game list"}
                 </Alert>
             </Snackbar>
         </React.Fragment>
